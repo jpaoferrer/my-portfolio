@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Leverage Strategy — AI E-Commerce Ops System</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0a0a0f;
+    --surface: #111118;
+    --surface2: #18181f;
+    --border:  #252530;
+    --accent:  #6c63ff;
+    --green:   #22c55e;
+    --teal:    #00d4aa;
+    --yellow:  #fbbf24;
+    --red:     #f87171;
+    --text:    #e8e8f0;
+    --muted:   #7070888;
+    --muted:   #888899;
+    --expo:    cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 840px; margin: 0 auto; padding: 60px 40px 120px; }
+
+  /* ── DOC HEADER ── */
+  .doc-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+    margin-bottom: 56px;
+  }
+  .doc-meta {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  .doc-meta::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .doc-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900; letter-spacing: -0.03em;
+    line-height: 1.1; margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 30%, rgba(108,99,255,0.7) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .doc-sub {
+    font-size: 15px; color: var(--muted);
+    max-width: 540px; line-height: 1.7;
+  }
+  .doc-date {
+    margin-top: 20px;
+    font-size: 11px; color: rgba(255,255,255,0.2);
+    font-weight: 500; letter-spacing: 0.08em;
+  }
+
+  /* ── TABLE OF CONTENTS ── */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 56px;
+  }
+  .toc-title {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 16px;
+  }
+  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .toc-list li { display: flex; align-items: baseline; gap: 10px; }
+  .toc-num {
+    font-size: 10px; font-weight: 700; color: var(--accent);
+    min-width: 22px; font-variant-numeric: tabular-nums;
+  }
+  .toc-list a {
+    color: rgba(255,255,255,0.65); text-decoration: none; font-size: 14px;
+    transition: color 0.2s;
+  }
+  .toc-list a:hover { color: #fff; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 72px; scroll-margin-top: 32px; }
+  .sec-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .sec-title {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.03em;
+    margin-bottom: 6px; line-height: 1.15;
+  }
+  .sec-sub {
+    font-size: 14px; color: var(--muted); margin-bottom: 32px;
+    max-width: 560px;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 56px 0;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-radius: 12px; padding: 24px 28px; margin: 24px 0;
+    border: 1px solid;
+  }
+  .callout.info  { background: rgba(108,99,255,0.07); border-color: rgba(108,99,255,0.25); }
+  .callout.green { background: rgba(34,197,94,0.07);  border-color: rgba(34,197,94,0.25); }
+  .callout.yellow{ background: rgba(251,191,36,0.07); border-color: rgba(251,191,36,0.25); }
+  .callout.teal  { background: rgba(0,212,170,0.07);  border-color: rgba(0,212,170,0.25); }
+  .callout-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .callout.info   .callout-label { color: var(--accent); }
+  .callout.green  .callout-label { color: var(--green); }
+  .callout.yellow .callout-label { color: var(--yellow); }
+  .callout.teal   .callout-label { color: var(--teal); }
+  .callout p { font-size: 14px; color: rgba(255,255,255,0.78); }
+  .callout p + p { margin-top: 8px; }
+  .callout strong { color: #fff; font-weight: 700; }
+
+  /* ── CARDS ── */
+  .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+  }
+  .card-icon { font-size: 24px; margin-bottom: 14px; }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .card-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* ── PRICE TABLE ── */
+  .price-table { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  .price-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 12px;
+    position: relative;
+  }
+  .price-card.featured {
+    border-color: var(--accent);
+    background: rgba(108,99,255,0.06);
+  }
+  .price-badge {
+    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #fff; font-size: 10px; font-weight: 700;
+    padding: 3px 12px; border-radius: 100px; letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .price-tier { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .price-val {
+    font-size: 32px; font-weight: 900; letter-spacing: -0.04em;
+    line-height: 1;
+    background: linear-gradient(135deg, #fff 0%, rgba(108,99,255,0.7) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .price-val span { font-size: 14px; font-weight: 500; color: var(--muted); -webkit-text-fill-color: var(--muted); }
+  .price-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .price-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .price-list li {
+    font-size: 12px; color: rgba(255,255,255,0.6);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .price-list li::before { content: '✓'; color: var(--teal); font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 0; margin: 24px 0; }
+  .step {
+    display: flex; gap: 20px;
+    padding-bottom: 32px;
+    position: relative;
+  }
+  .step:last-child { padding-bottom: 0; }
+  .step-line {
+    display: flex; flex-direction: column; align-items: center;
+    flex-shrink: 0; width: 36px;
+  }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .step-connector {
+    width: 1px; flex: 1; min-height: 20px;
+    background: var(--border); margin-top: 4px;
+  }
+  .step:last-child .step-connector { display: none; }
+  .step-body { padding-top: 6px; }
+  .step-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* ── INLINE CODE ── */
+  code {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px; background: rgba(255,255,255,0.07);
+    border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px;
+    color: var(--teal);
+  }
+
+  /* ── BODY COPY ── */
+  p { color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: #fff; font-weight: 700; }
+  ul.body-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+  ul.body-list li {
+    font-size: 14px; color: rgba(255,255,255,0.65);
+    padding-left: 18px; position: relative; line-height: 1.6;
+  }
+  ul.body-list li::before {
+    content: '/'; position: absolute; left: 0;
+    color: var(--accent); font-weight: 700; font-size: 12px;
+  }
+  ul.body-list li strong { color: #fff; font-weight: 600; }
+
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+  th {
+    text-align: left; padding: 12px 16px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.65); vertical-align: top;
+  }
+  td:first-child { font-weight: 600; color: #fff; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ── TAG PILLS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+  .tag {
+    font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 6px;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  .tag.accent { border-color: rgba(108,99,255,0.4); color: #a09fff; background: rgba(108,99,255,0.08); }
+  .tag.green  { border-color: rgba(34,197,94,0.4); color: #4ade80; background: rgba(34,197,94,0.08); }
+  .tag.teal   { border-color: rgba(0,212,170,0.4); color: #2dd4bf; background: rgba(0,212,170,0.08); }
+
+  /* ── HIGHLIGHT STAT BAR ── */
+  .stat-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; background: var(--border);
+    border-radius: 14px; overflow: hidden; margin: 28px 0;
+  }
+  .stat-item {
+    background: var(--surface); padding: 24px 20px; text-align: center;
+  }
+  .stat-num {
+    font-size: 32px; font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+    background: linear-gradient(135deg, #fff, #a09fff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 4px;
+  }
+  .stat-lbl { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+  /* ── BLOCKQUOTE ── */
+  blockquote {
+    border-left: 3px solid var(--accent); padding: 16px 24px; margin: 20px 0;
+    background: rgba(108,99,255,0.04); border-radius: 0 8px 8px 0;
+  }
+  blockquote p { font-style: italic; color: rgba(255,255,255,0.75); font-size: 14px; }
+
+  /* ── BACK LINK ── */
+  .back-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 48px;
+    background: rgba(10,10,15,0.9); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; align-items: center; padding: 0 40px;
+    z-index: 50;
+  }
+  .back-link {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s;
+  }
+  .back-link:hover { color: #fff; }
+
+  body { padding-top: 48px; }
+
+  @media (max-width: 680px) {
+    .page { padding: 40px 20px 80px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .price-table { grid-template-columns: 1fr; }
+    .stat-bar { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="back-bar">
+  <a href="index.html" class="back-link">← Back to Portfolio</a>
+</nav>
+
+<div class="page">
+
+  <!-- DOC HEADER -->
+  <header class="doc-header">
+    <div class="doc-meta">Strategy Document</div>
+    <h1 class="doc-title">How to Leverage the AI E-Commerce Ops System for Your Portfolio</h1>
+    <p class="doc-sub">A playbook for turning the 7-workflow system into leads, authority, and income — packaging it as a portfolio asset, a service offering, and a content engine.</p>
+    <div class="doc-date">Written June 2026 &nbsp;·&nbsp; Juan Paolo Blanco</div>
+  </header>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol class="toc-list">
+      <li><span class="toc-num">01</span><a href="#s1">What You Actually Built (and Why It Matters)</a></li>
+      <li><span class="toc-num">02</span><a href="#s2">Pricing — What This System Is Worth</a></li>
+      <li><span class="toc-num">03</span><a href="#s3">How to Use It as a Portfolio Asset</a></li>
+      <li><span class="toc-num">04</span><a href="#s4">Packaging It as a Service Offering</a></li>
+      <li><span class="toc-num">05</span><a href="#s5">Who to Target (ICP)</a></li>
+      <li><span class="toc-num">06</span><a href="#s6">How to Find and Reach Clients</a></li>
+      <li><span class="toc-num">07</span><a href="#s7">Content Strategy — Turn It Into Leverage</a></li>
+      <li><span class="toc-num">08</span><a href="#s8">Setting Up a Live Demo Environment</a></li>
+      <li><span class="toc-num">09</span><a href="#s9">Objections You'll Hear and How to Handle Them</a></li>
+      <li><span class="toc-num">10</span><a href="#s10">The 90-Day Execution Roadmap</a></li>
+    </ol>
+  </div>
+
+  <!-- SECTION 1 -->
+  <section class="section" id="s1">
+    <div class="sec-label">Section 01</div>
+    <h2 class="sec-title">What You Actually Built — and Why It Matters</h2>
+    <p class="sec-sub">Before positioning it, understand the real value on the table.</p>
+
+    <div class="stat-bar">
+      <div class="stat-item"><div class="stat-num">7</div><div class="stat-lbl">AI Workflows</div></div>
+      <div class="stat-item"><div class="stat-num">5+</div><div class="stat-lbl">Integrations</div></div>
+      <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-lbl">Monitoring</div></div>
+      <div class="stat-item"><div class="stat-num">~0</div><div class="stat-lbl">Human Hours/wk</div></div>
+    </div>
+
+    <p>Most e-commerce businesses are drowning in operational tasks that feel urgent but are entirely automatable. What you built is not a "cool demo" — it's a <strong>functioning operations department replacement</strong> that runs for less than $50/month in API costs.</p>
+
+    <p>The system covers the full ops stack:</p>
+
+    <ul class="body-list">
+      <li><strong>W1 — Ad Performance Monitor:</strong> Checks Meta Ads every 6 hours, fires alerts if ROAS or spend drops past a threshold. Most brands pay a media buyer $3–5k/month to do this manually.</li>
+      <li><strong>W2 — Support Inbox Triage:</strong> Reads incoming emails, classifies urgency, escalates high-priority tickets. Saves 2–3 hours daily for a solo operator.</li>
+      <li><strong>W3 — Refund Spike Detector:</strong> Monitors Shopify refund rate, uses AI to identify root causes (product issue? fulfilment delay? bad ad creative?). Proactive instead of reactive.</li>
+      <li><strong>W4 — Revenue Intelligence Report:</strong> Every Monday, generates and sends a full P&L summary with trend analysis. Replaces a weekly analytics ritual.</li>
+      <li><strong>W5 — Inventory Intelligence:</strong> Monitors stock levels, predicts stockouts, alerts on low inventory with reorder suggestions.</li>
+      <li><strong>W6 — Customer Sentiment Monitor:</strong> Scrapes reviews or support tickets, uses AI to detect sentiment shifts before they become PR problems.</li>
+      <li><strong>W7 — AI Ops Chatbot:</strong> Slack bot that answers business questions in real time using live Shopify data — "What were our top 5 products last week?" answered in seconds.</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-label">The Real Value Proposition</div>
+      <p>You're not selling automation. You're selling <strong>a junior ops team that never sleeps, never calls in sick, and costs $50/month to run</strong>. For a 7-figure e-commerce brand, this replaces 15–20 hours of human operations work per week.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 2 -->
+  <section class="section" id="s2">
+    <div class="sec-label">Section 02</div>
+    <h2 class="sec-title">Pricing — What This System Is Worth</h2>
+    <p class="sec-sub">Three ways to price it, from one-off project to recurring revenue.</p>
+
+    <div class="price-table">
+      <div class="price-card">
+        <div class="price-tier">One-Time Build</div>
+        <div class="price-val">$3,500 <span>– $6,000</span></div>
+        <div class="price-desc">Custom install, configured for their Shopify store, their Slack, their ad account. Includes 30 days of support.</div>
+        <ul class="price-list">
+          <li>All 7 workflows deployed</li>
+          <li>Credentials configured</li>
+          <li>Training + documentation</li>
+          <li>30-day support window</li>
+        </ul>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">Recommended</div>
+        <div class="price-tier">Setup + Retainer</div>
+        <div class="price-val">$2,500 <span>+ $600/mo</span></div>
+        <div class="price-desc">Lower entry price to close the deal, then monthly recurring for maintenance, updates, and AI model improvements.</div>
+        <ul class="price-list">
+          <li>Full setup included</li>
+          <li>Monthly health checks</li>
+          <li>Workflow updates as platform changes</li>
+          <li>Priority support</li>
+          <li>New workflow added quarterly</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">Productized SaaS</div>
+        <div class="price-val">$299 <span>/mo</span></div>
+        <div class="price-desc">Long-term play. White-label the system, charge monthly for access. Needs more infrastructure but scales to many clients.</div>
+        <ul class="price-list">
+          <li>Shared n8n instance</li>
+          <li>Onboarding wizard</li>
+          <li>Dashboard for clients</li>
+          <li>Requires 10+ clients to be viable</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-label">Anchor Pricing Logic</div>
+      <p>When you present pricing, always anchor to what it replaces. A part-time virtual assistant handling these ops tasks costs <strong>$800–$1,500/month</strong>. A fractional COO or ops consultant costs <strong>$3,000–$6,000/month</strong>. Your $600/month retainer sounds like a steal by comparison.</p>
+      <p>Frame it as: <strong>"This replaces $1,500/month in VA costs for $600/month."</strong> The math closes itself.</p>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">What Factors Drive the Price Up</h3>
+    <table>
+      <thead>
+        <tr><th>Factor</th><th>Price Impact</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Store revenue &gt; $1M/year</td><td>+$1,000–2,000</td><td>Higher stakes, more value delivered</td></tr>
+        <tr><td>Custom integrations (custom ERPs, non-Shopify)</td><td>+$500–1,500</td><td>More dev work and edge cases</td></tr>
+        <tr><td>Rush timeline (&lt; 2 weeks)</td><td>+30% rush fee</td><td>Opportunity cost</td></tr>
+        <tr><td>Multiple stores or markets</td><td>+$500 per store</td><td>Multi-tenancy complexity</td></tr>
+        <tr><td>Ongoing retainer requested</td><td>Raises floor to $600/mo</td><td>Continuity premium</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 3 -->
+  <section class="section" id="s3">
+    <div class="sec-label">Section 03</div>
+    <h2 class="sec-title">How to Use It as a Portfolio Asset</h2>
+    <p class="sec-sub">You've already built the case study page. Here's how to maximize its reach and conversion power.</p>
+
+    <div class="callout green">
+      <div class="callout-label">Already Done</div>
+      <p>The case study page (<code>case-study-ai-ops.html</code>) is live. It covers the architecture, all 7 workflows, the tech stack, and has a contact form wired to your Gmail. That's your foundation — now drive traffic to it.</p>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">What Makes a Case Study Convert</h3>
+    <p>Most portfolio case studies describe <em>what</em> was built. The ones that convert leads describe the <strong>business problem solved, the cost of not solving it, and the outcome after</strong>. Your case study already does this — don't make it more technical, make it more specific.</p>
+
+    <ul class="body-list">
+      <li><strong>Add a "Before vs After" section</strong> — What was the store owner doing manually before? How many hours? What does this free them to do?</li>
+      <li><strong>Add a dollar value estimate</strong> — "This system handles $2,400/month worth of operational work."</li>
+      <li><strong>Add social proof</strong> — Even one line from someone who tried it ("The weekly revenue report alone saves me 3 hours every Monday.") dramatically increases trust.</li>
+      <li><strong>Add a live demo link</strong> — See Section 8 for how to set this up. A working demo is worth 10 screenshots.</li>
+    </ul>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Where to Publish and Distribute It</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">💼</div>
+        <div class="card-title">LinkedIn — long-form post</div>
+        <div class="card-body">Write a 600–800 word post breaking down how the system works. Don't just share the link — tell the story. "I spent 3 weeks building an AI ops system for a Shopify store. Here's what it does and what I learned." Attach the case study URL in comments (LinkedIn hides reach on posts with external links).</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🐦</div>
+        <div class="card-title">X (Twitter) — thread</div>
+        <div class="card-body">A 10-tweet thread: "I built a 7-agent AI system that runs an e-commerce store's entire ops stack. Here's a breakdown, workflow by workflow." Tweet 1 = the hook. Tweets 2–9 = one workflow each with a screenshot or short video. Tweet 10 = CTA to the case study.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎬</div>
+        <div class="card-title">Short-form video (Reels/TikTok)</div>
+        <div class="card-body">60–90 second screen recording of the chatbot answering a real business question in Slack. Overlay text: "This Slack bot just answered a business question using live Shopify data in 3 seconds. Here's how." Combine your video editing skills with your automation work — that's your unique angle.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📧</div>
+        <div class="card-title">Cold email to warm prospects</div>
+        <div class="card-body">Find e-commerce brands you admire (or that you know are growing fast). Send a 4-sentence email: problem you noticed → system you built that solves it → link to case study → one specific question to open dialogue. No pitch decks, no long intros.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 4 -->
+  <section class="section" id="s4">
+    <div class="sec-label">Section 04</div>
+    <h2 class="sec-title">Packaging It as a Service Offering</h2>
+    <p class="sec-sub">How to turn a portfolio project into a repeatable business.</p>
+
+    <p>The mistake most freelancers make is treating each project as custom from scratch. The system you built is <strong>90% reusable across any Shopify store</strong> — the only customization is credentials, thresholds, and Slack workspace. You can deliver a new client in 3–5 days instead of 3–5 weeks.</p>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Name It</h3>
+    <p>Don't say "n8n automation" — that means nothing to a business owner. Name the package:</p>
+    <div class="tags">
+      <span class="tag accent">AI Ops Suite for Shopify</span>
+      <span class="tag accent">Autonomous Operations System</span>
+      <span class="tag accent">The Ops Autopilot</span>
+      <span class="tag accent">Store Intelligence System</span>
+      <span class="tag">Pick one and own it</span>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">The Onboarding Checklist (for your own use)</h3>
+    <p>To deliver this to a new client, you need:</p>
+    <ul class="body-list">
+      <li>Shopify store URL and OAuth2 credentials</li>
+      <li>Meta Ads account access (read-only) + ad account ID</li>
+      <li>Gmail account or forwarding address for support inbox workflow</li>
+      <li>Slack workspace invite with permission to create a bot</li>
+      <li>Alert thresholds: ROAS floor, refund rate %, inventory minimums</li>
+      <li>Notification preferences (who gets what, when)</li>
+    </ul>
+
+    <div class="callout teal">
+      <div class="callout-label">Productization Tip</div>
+      <p>Build a Google Form or Typeform that collects all the above in one sitting. Send it after signing the contract — it signals professionalism and reduces back-and-forth. You can then set up the entire system in one focused session instead of chasing credentials over 2 weeks.</p>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Scope Boundaries (protect yourself)</h3>
+    <table>
+      <thead>
+        <tr><th>Included</th><th>Not Included (quote separately)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>All 7 workflows deployed and live</td><td>Custom integrations beyond Shopify + Meta + Gmail + Slack</td></tr>
+        <tr><td>Credentials setup and testing</td><td>Ongoing content creation or ad management</td></tr>
+        <tr><td>30-day bug fixes (retainer: ongoing)</td><td>Training sessions beyond initial handover call</td></tr>
+        <tr><td>Documentation of all workflows</td><td>Migrating to a different automation platform</td></tr>
+        <tr><td>Initial threshold configuration</td><td>Building new workflows outside the system scope</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 5 -->
+  <section class="section" id="s5">
+    <div class="sec-label">Section 05</div>
+    <h2 class="sec-title">Who to Target — Ideal Client Profile</h2>
+    <p class="sec-sub">Not every Shopify store needs or can afford this. Focus on the ones that do.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <div class="card-title">Sweet Spot Client</div>
+        <div class="card-body">Shopify store doing $300k–$3M/year. Running Meta Ads. Team of 1–5 people. Owner is overwhelmed by operations and wants to focus on growth. Understands AI tools. Has a Slack workspace or is willing to set one up.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <div class="card-title">Ideal Growth Client</div>
+        <div class="card-body">Scaling brand doing $1M–$5M/year with increasing support volume. Struggling with Monday morning reporting rituals. Has tried hiring VAs but keeps running into reliability issues. Has been burned by missed refund spikes or inventory stockouts.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚠️</div>
+        <div class="card-title">Too Small</div>
+        <div class="card-body">Under $100k/year. Can't justify $600/month. The system would be overkill, and they'd never see ROI. Better to build relationships and revisit in 6–12 months when they're bigger.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">❌</div>
+        <div class="card-title">Wrong Fit</div>
+        <div class="card-body">Not on Shopify (WooCommerce, BigCommerce requires major rework). Not running paid ads (W1 has no value). Has a full in-house ops team (they'll feel threatened, not helped). Wants to own and run the system themselves with no ongoing support.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Where to Find Them</h3>
+    <ul class="body-list">
+      <li><strong>Shopify Partner Directory</strong> — brands actively looking for agency/consultant help</li>
+      <li><strong>Meta Ads Library</strong> — brands running active ads are investing in growth and have revenue</li>
+      <li><strong>Micro-influencer brand collabs</strong> — brands doing influencer marketing are usually in the $500k–$3M range</li>
+      <li><strong>r/shopify and r/ecommerce</strong> — people actively complaining about ops problems are qualified leads</li>
+      <li><strong>LinkedIn: "Head of E-Commerce" or "Shopify Founder"</strong> — filter by company size 1–10 employees</li>
+      <li><strong>Facebook Groups</strong> — "Shopify Entrepreneurs", "eCommerce Fuel" — high-quality DTC founders</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 6 -->
+  <section class="section" id="s6">
+    <div class="sec-label">Section 06</div>
+    <h2 class="sec-title">How to Find and Reach Clients</h2>
+    <p class="sec-sub">Three proven outreach approaches that don't feel spammy.</p>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Approach 1: Value-First Cold Email</h3>
+    <p>Find a brand you like. Spend 5 minutes learning about them. Write this email:</p>
+
+    <blockquote>
+      <p>Subject: Quick idea for [Brand Name]'s ops</p>
+      <p style="margin-top:12px;">Hey [Name],</p>
+      <p>I've been following [Brand] — the [specific thing you noticed: product launch / ad creative / growth] caught my attention.</p>
+      <p style="margin-top:8px;">I recently built an AI system that automates the full operations stack for Shopify brands — ad monitoring, support triage, refund detection, weekly reports, and a Slack chatbot that answers business questions using live store data. Most clients recover 15–20 hours/week of ops work.</p>
+      <p style="margin-top:8px;">Here's a 3-minute case study if you're curious: [link]</p>
+      <p style="margin-top:8px;">Would it make sense to chat for 20 minutes?</p>
+      <p style="margin-top:8px;">JP</p>
+    </blockquote>
+
+    <div class="callout info">
+      <div class="callout-label">Why This Works</div>
+      <p>It's <strong>short, specific, and doesn't ask for anything</strong> in the first message except a "yes/no" to a 20-minute call. The case study link does the selling — your email just earns the click.</p>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Approach 2: LinkedIn Content + DMs</h3>
+    <p>Post 2–3 times per week about automation, e-commerce ops, and the specific problems your system solves. Comment thoughtfully on posts by your ICP. After 2–3 meaningful comments on someone's posts, send a short DM — you're no longer cold.</p>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Approach 3: Community Participation</h3>
+    <p>Spend 30 minutes/week in Shopify or DTC communities (Reddit, Facebook Groups, Discord). When someone posts a problem your system solves, reply with a genuine answer — then mention you built a tool for exactly this. Let them ask you for more information rather than pitching unprompted.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 7 -->
+  <section class="section" id="s7">
+    <div class="sec-label">Section 07</div>
+    <h2 class="sec-title">Content Strategy — Turn It Into Leverage</h2>
+    <p class="sec-sub">You have video editing skills AND automation expertise. This is a rare combination — use it to build an audience.</p>
+
+    <div class="callout green">
+      <div class="callout-label">Your Unfair Advantage</div>
+      <p>Most automation consultants can't produce compelling video. Most video editors don't know automation. <strong>You can explain complex systems in a way that's visually engaging</strong> — that's a moat. Use it.</p>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Content Formats That Work</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🎥</div>
+        <div class="card-title">Screen Recording Shorts (30–90s)</div>
+        <div class="card-body">Record the chatbot answering a real question. Record an alert firing when ROAS drops. Record the weekly report arriving in Slack. No face cam needed. Add captions + music. These are your most shareable pieces.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">LinkedIn Deep-Dives</div>
+        <div class="card-body">"I automated [specific thing] so a Shopify founder doesn't have to. Here's exactly how." Walk through one workflow at a time — one post per workflow = 7 posts from one project. Tag the tools you used (n8n, Shopify, Groq) for extra reach.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧵</div>
+        <div class="card-title">Twitter/X Threads</div>
+        <div class="card-body">"The 7 things your Shopify store's AI should be doing while you sleep" — one tweet per workflow. These get shared by automation and e-commerce audiences simultaneously.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <div class="card-title">Blog / SEO Content</div>
+        <div class="card-body">Long-term play. Write detailed posts: "How to automate Shopify refund monitoring with n8n and AI" — these rank in Google and bring inbound leads for years. Repurpose each section of your case study into a standalone article.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Content Calendar Skeleton (Weekly)</h3>
+    <table>
+      <thead>
+        <tr><th>Day</th><th>Format</th><th>Topic</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Monday</td><td>LinkedIn post</td><td>One workflow deep-dive (rotate through 7)</td></tr>
+        <tr><td>Wednesday</td><td>Short video (Reels/TikTok/X)</td><td>Live demo clip of the system in action</td></tr>
+        <tr><td>Friday</td><td>LinkedIn or X thread</td><td>Lesson learned, hot take, or tool comparison</td></tr>
+      </tbody>
+    </table>
+
+    <p>This is 3 pieces/week. With your video skills, the video takes 30–45 minutes to produce. The text posts take 20 minutes each. That's under 2 hours/week for a consistent content presence that compounds over time.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 8 -->
+  <section class="section" id="s8">
+    <div class="sec-label">Section 08</div>
+    <h2 class="sec-title">Setting Up a Live Demo Environment</h2>
+    <p class="sec-sub">A live demo closes deals faster than any case study or screenshot.</p>
+
+    <p>The chatbot is your most impressive piece to demo because it's interactive. Here's how to let prospects try it themselves without giving them access to a client's real store:</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">1</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Set up a Shopify development store</div>
+          <div class="step-desc">Shopify gives you a free development store. Populate it with sample products and fake orders. This becomes your permanent demo environment — you own it, no client data is exposed.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">2</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Wire the chatbot to a public-accessible endpoint</div>
+          <div class="step-desc">Your n8n webhook is already live at <code>n8n.jpaoblanco.online</code>. Set up a stripped-down version of W7 that prospects can query via a simple web form on your portfolio or case study page.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">3</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Add a "Try the Demo" widget to the case study page</div>
+          <div class="step-desc">A simple chat input on the case study page that fires a question at the demo chatbot and returns the answer inline. Takes 1–2 hours to build. The conversion boost is massive — prospects go from "interesting" to "I need this."</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">4</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Prepare 3–4 scripted demo questions</div>
+          <div class="step-desc">Populate your demo store with data that makes compelling answers: top-selling products, a recent order spike, a low-inventory item. Then show: "Top 3 products by revenue this month" / "Which item is almost out of stock?" / "How many orders came in last week?"</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">5</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Record it as a video fallback</div>
+          <div class="step-desc">If the live demo ever has downtime during a pitch, have a 2-minute screen recording as a backup. Record a clean version with good audio and captions — this doubles as content for your social channels.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 9 -->
+  <section class="section" id="s9">
+    <div class="sec-label">Section 09</div>
+    <h2 class="sec-title">Objections You'll Hear and How to Handle Them</h2>
+    <p class="sec-sub">Every sales conversation has predictable resistance. Prepare for it.</p>
+
+    <table>
+      <thead>
+        <tr><th>Objection</th><th>What They Mean</th><th>Your Response</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"That's expensive."</td>
+          <td>They haven't connected the price to the value.</td>
+          <td>Anchor to cost of alternatives: "A part-time VA handling this work costs $900–$1,200/month and works 8 hours/day. This runs 24/7 for $600/month."</td>
+        </tr>
+        <tr>
+          <td>"What if it breaks?"</td>
+          <td>They're worried about dependency on a system they don't understand.</td>
+          <td>"All workflows are documented, you own the n8n instance, and the retainer includes monitoring and fixes. If I'm hit by a bus, you can hire any n8n developer to maintain it."</td>
+        </tr>
+        <tr>
+          <td>"We already use Klaviyo/Gorgias/etc."</td>
+          <td>They're not sure this replaces or complements their existing tools.</td>
+          <td>"This doesn't replace those — it connects them. The system can read from Gorgias for support triage and push data to Klaviyo. Think of it as the layer that makes your tools talk to each other."</td>
+        </tr>
+        <tr>
+          <td>"I'd need to see it working first."</td>
+          <td>Totally fair. They want proof before committing.</td>
+          <td>Pull up the demo. If you have the interactive chatbot working, offer 5 minutes right now. If not, offer a 30-minute screenshare call where you show it live on the demo store.</td>
+        </tr>
+        <tr>
+          <td>"We're not ready right now."</td>
+          <td>Timing issue, not a no.</td>
+          <td>"No problem — when would 'ready' look like? If it's a budget cycle issue, I have a lighter starter package at $1,500 that covers just the monitoring and reporting workflows."</td>
+        </tr>
+        <tr>
+          <td>"Can't I just use Zapier/Make?"</td>
+          <td>They've heard of alternatives and wonder why they need you.</td>
+          <td>"You could, but the AI reasoning layers — the refund root-cause analysis, the chatbot answering natural language questions — those require what I built on top. Off-the-shelf tools handle data transfer. This handles thinking."</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 10 -->
+  <section class="section" id="s10">
+    <div class="sec-label">Section 10</div>
+    <h2 class="sec-title">The 90-Day Execution Roadmap</h2>
+    <p class="sec-sub">A concrete sequence to go from "I have a portfolio project" to "I have paying clients."</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">1</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Days 1–14: Foundation</div>
+          <div class="step-desc">Finalize the case study page (done ✓). Set up the demo store. Record a 2-minute demo video of the chatbot in action. Write a LinkedIn post announcing you're taking on clients for this service.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">2</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Days 15–30: First Outreach Wave</div>
+          <div class="step-desc">Identify 20 Shopify brands in your target range. Send the value-first cold email to 5 per week. Post on LinkedIn and X 3×/week. Join 2 e-commerce communities and start contributing (not pitching).</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">3</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Days 31–60: First Client</div>
+          <div class="step-desc">Your goal is one paying client by day 60. Offer the first client a 20% discount in exchange for a video testimonial. Document the entire delivery process — how long it took, what issues came up — to improve the productized workflow.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-line">
+          <div class="step-num">4</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Days 61–90: Systematize and Scale</div>
+          <div class="step-desc">Add the client testimonial to the case study page and your LinkedIn profile. Refine the onboarding checklist. Start the second outreach wave targeting 20 more brands. Increase content to 4×/week — the first 60 days of posts are now warming up your audience.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-label">The Only Metric That Matters in Month 1</div>
+      <p>Don't measure LinkedIn impressions or website visits. Measure <strong>conversations started</strong>. Every week you should be having at least 2–3 conversations with potential clients — whether that's a DM, a reply to your cold email, or a comment that turns into a chat. If you're not getting conversations, your outreach message needs work, not your volume.</p>
+    </div>
+
+    <h3 style="font-size:17px; font-weight:700; margin: 28px 0 12px;">Revenue Projection</h3>
+    <table>
+      <thead>
+        <tr><th>Scenario</th><th>Month 3</th><th>Month 6</th><th>Month 12</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 new client/month × $2,500 setup + $600 retainer</td><td>$2,500 + $600 MRR</td><td>$2,500 + $3,600 MRR</td><td>$2,500 + $7,200 MRR</td></tr>
+        <tr><td>2 new clients/month (after referrals kick in)</td><td>$5,000 + $1,200 MRR</td><td>$5,000 + $7,200 MRR</td><td>$5,000 + $14,400 MRR</td></tr>
+        <tr><td>Productized at $299/mo (10+ clients)</td><td>—</td><td>$2,990 MRR</td><td>$5,980–$8,970 MRR</td></tr>
+      </tbody>
+    </table>
+
+    <p>The retainer model is the play. Each client you land is compounding monthly revenue — not a one-and-done project. <strong>5 clients on retainer = $3,000/month recurring</strong> while you keep taking on new builds.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CLOSING NOTE -->
+  <section class="section">
+    <div class="callout teal">
+      <div class="callout-label">Final Note</div>
+      <p>You built something real. A lot of people talk about "AI automation" without having shipped anything that runs in production. You have a live system, a case study, and working code. That's already more than 90% of the people competing in this space.</p>
+      <p style="margin-top:10px;">The only missing piece is telling enough people about it, consistently, until one of them says yes. The tech is done. The work now is the outreach.</p>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
