@@ -3864,6 +3864,19 @@
       s.run('JUAN PAOLO\nBLANCO');
     }
 
+    // Mobile browsers can restore this page from the back-forward cache (bfcache)
+    // in its exact prior DOM state without re-running load scripts — if that snapshot
+    // was mid-scramble or stuck blank, repair it immediately on restore.
+    window.addEventListener('pageshow', (e) => {
+      const nameEl = document.getElementById('heroName');
+      if (!nameEl) return;
+      const text = nameEl.textContent.replace(/ /g, '').trim();
+      const looksDone = text.includes('JUAN') && text.includes('PAOLO') && text.includes('BLANCO');
+      if (e.persisted && !looksDone) {
+        nameEl.innerHTML = 'JUAN PAOLO<br><span class="ao">BLANCO</span>';
+      }
+    });
+
     // ========== Copy Email ==========
     const toast = document.getElementById('toast');
 
