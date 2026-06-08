@@ -3157,7 +3157,7 @@
             <div class="vid-reel-title">Ayman Shorts</div>
             <div class="vid-card reel">
               <video preload="metadata" playsinline>
-                <source src="ayman-shorts.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/ayman-shorts.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3168,7 +3168,7 @@
             <div class="vid-reel-title">Memento Mori</div>
             <div class="vid-card reel">
               <video preload="metadata" playsinline>
-                <source src="Memento-Mori.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/Memento-Mori.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3179,7 +3179,7 @@
             <div class="vid-reel-title">Real Estate</div>
             <div class="vid-card reel">
               <video preload="metadata" playsinline>
-                <source src="real-estate-shorts.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/real-estate-shorts.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3190,7 +3190,7 @@
             <div class="vid-reel-title">Peter Vanderwall</div>
             <div class="vid-card reel">
               <video preload="metadata" playsinline>
-                <source src="peter-vanderwall-shorts.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/peter-vanderwall-shorts.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3207,7 +3207,7 @@
             <div class="vid-reel-title">Home Care Champions</div>
             <div class="vid-card wide">
               <video preload="metadata" playsinline>
-                <source src="home-care-champions-experience.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/home-care-champions-experience.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3218,7 +3218,7 @@
             <div class="vid-reel-title">HCCE Promo</div>
             <div class="vid-card wide">
               <video preload="metadata" playsinline>
-                <source src="hcce-promo.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/hcce-promo.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3229,7 +3229,7 @@
             <div class="vid-reel-title">Teaser Video</div>
             <div class="vid-card wide">
               <video preload="metadata" playsinline>
-                <source src="teaser-video.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/teaser-video.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3246,7 +3246,7 @@
             <div class="vid-reel-title">Overpaid Taxes: How To Find Out</div>
             <div class="vid-card wide">
               <video preload="metadata" playsinline>
-                <source src="overpaid-taxes-howtofindout.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/overpaid-taxes-howtofindout.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3257,7 +3257,7 @@
             <div class="vid-reel-title">More Leads: Without Spending More Money</div>
             <div class="vid-card wide">
               <video preload="metadata" playsinline disablepictureinpicture>
-                <source src="More-leads-less-money.mp4" type="video/mp4">
+                <source src="https://portfoliovideo.b-cdn.net/More-leads-less-money.mp4" type="video/mp4">
               </video>
               <div class="vid-overlay">
                 <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
@@ -3803,6 +3803,8 @@
 
       run(text) {
         cancelAnimationFrame(this.raf);
+        clearTimeout(this.failsafe);
+        this.done = false;
         this.frame = 0;
         this.text = text;
         this.queue = [...text].map((ch, i) => ({
@@ -3811,10 +3813,25 @@
           end:   Math.floor(Math.random() * 14) + 10,
           ch: ''
         }));
+        // Mobile browsers throttle/pause requestAnimationFrame for backgrounded
+        // or not-yet-visible tabs, which can freeze this mid-scramble and leave
+        // the name permanently blank. This guarantees it always resolves to the
+        // final text even if the rAF loop never gets to run.
+        this.failsafe = setTimeout(() => this.finish(), 2400);
         return new Promise(res => { this.resolve = res; this.tick(); });
       }
 
+      finish() {
+        if (this.done) return;
+        this.done = true;
+        cancelAnimationFrame(this.raf);
+        clearTimeout(this.failsafe);
+        this.el.innerHTML = 'JUAN PAOLO<br><span class="ao">BLANCO</span>';
+        this.resolve();
+      }
+
       tick() {
+        if (this.done) return;
         let out = '', done = 0;
         for (const item of this.queue) {
           if (this.frame >= item.end) {
@@ -3836,8 +3853,7 @@
         if (done < this.queue.length) {
           this.raf = requestAnimationFrame(this.tick);
         } else {
-          this.el.innerHTML = 'JUAN PAOLO<br><span class="ao">BLANCO</span>';
-          this.resolve();
+          this.finish();
         }
       }
     }
