@@ -471,11 +471,31 @@
     .wf-card.span2 { grid-column: span 2; }
   }
   @media (max-width: 720px) {
-    .hero h1 { font-size: 36px; }
+    .back-nav { padding: 0 20px; }
+    .hero { padding: 56px 24px 40px; }
+    .hero h1 { font-size: 32px; letter-spacing: -1px; }
+    .hero p { font-size: 15px; }
+    .page-body { padding: 0 20px 60px; }
+    .section-title { font-size: 22px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { padding: 20px 16px; }
+    .stat-num { font-size: 28px; }
     .workflows, .outcomes { grid-template-columns: 1fr; }
     .wf-card.span2 { grid-column: span 1; }
-    .demo-box { flex-direction: column; }
+    .arch { padding: 24px 16px; }
+    .demo-box { flex-direction: column; align-items: stretch; padding: 28px 24px; gap: 24px; }
+    .demo-box::before { display: none; }
+    .slack-bubble { min-width: 0; width: 100%; }
+    .flow-step { min-width: 0; flex: 1 1 100%; }
     .ba-row { grid-template-columns: 1fr; }
+    .ba-cell.metric { font-weight: 700; }
+    .footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 26px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .badge { font-size: 11px; padding: 5px 12px; }
+    .demo-left h3 { font-size: 19px; }
   }
 
   /* ── PRINT / PDF ── keep the dark design, just freeze animations ── */

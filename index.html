@@ -2123,6 +2123,15 @@
 
       .cert-grid { grid-template-columns: 1fr; }
       .vid-grid-reels { grid-template-columns: repeat(2, 1fr); }
+      .vid-grid.cols-3, .vid-grid.cols-2 { grid-template-columns: 1fr; }
+      .vid-header { align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .h-name { font-size: 38px; }
+      .vid-grid-reels { grid-template-columns: 1fr; }
+      .vid-tabs { width: 100%; }
+      .vt { flex: 1; padding: 9px 8px; text-align: center; }
     }
 
     @media (prefers-reduced-motion: reduce) {
