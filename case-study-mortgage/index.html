@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CareFlow AI — Homecare Operations System — Case Study</title>
+<title>AI Mortgage Aggregator Ops System — Case Study</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -198,7 +198,7 @@
 
   .hero p {
     font-size: 17px; color: var(--muted);
-    max-width: 580px; margin: 0 auto 32px;
+    max-width: 620px; margin: 0 auto 32px;
     font-weight: 400; line-height: 1.7;
     position: relative; z-index: 1;
     opacity: 0; transform: translateY(20px);
@@ -267,8 +267,8 @@
     background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(108,99,255,0.04), transparent);
     pointer-events: none;
   }
-  .arch-flow { display: flex; align-items: center; justify-content: center; }
-  .arch-node { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 100px; }
+  .arch-flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px; }
+  .arch-node { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 92px; }
   .arch-icon {
     width: 52px; height: 52px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
@@ -340,7 +340,7 @@
   }
   .wf-card.span2 { grid-column: span 2; }
 
-  /* ── LIVE DEMO ── */
+  /* ── DEMO ── */
   .demo-box {
     background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(0,212,170,0.07));
     border: 1px solid rgba(108,99,255,0.25);
@@ -361,12 +361,12 @@
 
   .slack-bubble {
     background: #1a1d21; border-radius: 12px;
-    padding: 16px 20px; min-width: 320px; font-size: 14px;
+    padding: 16px 20px; min-width: 340px; font-size: 14px;
     border: 1px solid #2d3139;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
-  .slack-command { color: #4285f4; font-weight: 600; margin-bottom: 14px; font-size: 15px; min-height: 22px; }
-  .typing-cursor { display: inline-block; width: 2px; height: 15px; background: #4285f4; margin-left: 1px; vertical-align: text-bottom; animation: blink 0.9s infinite; }
+  .slack-command { color: #5865f2; font-weight: 600; margin-bottom: 14px; font-size: 15px; min-height: 22px; }
+  .typing-cursor { display: inline-block; width: 2px; height: 15px; background: #5865f2; margin-left: 1px; vertical-align: text-bottom; animation: blink 0.9s infinite; }
   @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
   .slack-bot { display: flex; align-items: flex-start; gap: 10px; }
   .slack-avatar {
@@ -378,7 +378,6 @@
   .slack-name { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 4px; }
   .slack-reply { font-size: 13px; color: #d1d5db; line-height: 1.6; }
   .slack-reply strong { color: #fff; }
-  /* Reply hidden until typing completes */
   .slack-bot { opacity: 0; transform: translateY(8px); transition: opacity 0.5s, transform 0.5s; }
   .slack-bot.show { opacity: 1; transform: none; }
 
@@ -395,6 +394,16 @@
   .stack-icon { font-size: 20px; }
   .stack-name { color: var(--text); }
   .stack-type { font-size: 11px; color: var(--muted); font-weight: 400; }
+
+  /* ── MODULE FLOW (mini) ── */
+  .flow-steps { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:50px; }
+  .flow-step {
+    flex:1; min-width:150px; background:var(--card-bg); border:1px solid var(--border);
+    border-radius:12px; padding:18px 16px; position:relative;
+  }
+  .flow-step-num { font-size:11px; font-weight:700; color:var(--accent); letter-spacing:1px; margin-bottom:6px; }
+  .flow-step-title { font-size:14px; font-weight:700; margin-bottom:4px; }
+  .flow-step-desc { font-size:12px; color:var(--muted); line-height:1.5; }
 
   /* ── OUTCOMES ── */
   .outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 50px; }
@@ -414,10 +423,21 @@
   .outcome-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
   .outcome-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
+  /* ── BEFORE / AFTER TABLE ── */
+  .ba-table { background:var(--card-bg); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:50px; }
+  .ba-row { display:grid; grid-template-columns: 1.4fr 1fr 1fr; border-bottom:1px solid var(--border); }
+  .ba-row:last-child { border-bottom:none; }
+  .ba-row.head { background:var(--surface2); }
+  .ba-cell { padding:16px 20px; font-size:13.5px; line-height:1.5; }
+  .ba-cell.metric { font-weight:600; color:var(--text); }
+  .ba-cell.before { color:#fca5a5; }
+  .ba-cell.after  { color:#6ee7c7; }
+  .ba-row.head .ba-cell { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+
   /* ── FOOTER ── */
   .footer {
     display: flex; align-items: center; justify-content: space-between;
-    padding-top: 30px; border-top: 1px solid var(--border);
+    padding-top: 30px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 20px;
   }
   .footer-left { font-size: 13px; color: var(--muted); }
   .footer-left strong { color: var(--text); font-weight: 600; }
@@ -431,143 +451,6 @@
   }
   .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(108,99,255,0.3); }
 
-  /* ── CONTACT FORM ── */
-  .form-section { margin-bottom: 50px; }
-
-  .form-header { margin-bottom: 36px; }
-
-  .inquiry-form {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-  }
-  .inquiry-form::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
-    background-size: 200% 100%;
-    animation: borderShimmer 3s linear infinite;
-  }
-  @keyframes borderShimmer {
-    0%   { background-position: 0% 0%; }
-    100% { background-position: 200% 0%; }
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-
-  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-  .form-row .form-group { margin-bottom: 0; }
-
-  label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-  }
-  .req    { color: var(--accent); }
-  .optional { color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; }
-
-  input[type="text"],
-  input[type="email"],
-  select,
-  textarea {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 14px;
-    padding: 13px 16px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-    width: 100%;
-    -webkit-appearance: none;
-  }
-  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
-  select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
-  select option { background: #1a1a24; color: var(--text); }
-  textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
-
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(108,99,255,0.12);
-    background: rgba(108,99,255,0.05);
-  }
-  input.invalid, select.invalid, textarea.invalid {
-    border-color: #ef4444;
-    box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
-  }
-
-  .form-footer {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-top: 8px;
-  }
-  .form-note { font-size: 12px; color: var(--muted); }
-
-  .submit-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: linear-gradient(135deg, var(--accent), #5a52e8);
-    color: #fff;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 14px; font-weight: 700;
-    padding: 14px 28px; border-radius: 10px;
-    border: none; cursor: pointer;
-    letter-spacing: 0.2px;
-    transition: transform 0.3s var(--expo), box-shadow 0.3s, opacity 0.2s;
-    position: relative; overflow: hidden;
-  }
-  .submit-btn::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-    opacity: 0; transition: opacity 0.2s;
-  }
-  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(108,99,255,0.35); }
-  .submit-btn:hover::after { opacity: 1; }
-  .submit-btn:active { transform: translateY(0); }
-  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-  .btn-spinner svg { animation: spin 0.8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .form-success {
-    display: flex; align-items: center; gap: 16px;
-    background: rgba(0,212,170,0.08);
-    border: 1px solid rgba(0,212,170,0.25);
-    border-radius: 12px; padding: 16px 20px;
-    margin-top: 20px;
-    animation: fadeUp 0.5s var(--expo);
-  }
-  .success-icon {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(0,212,170,0.15);
-    border: 1px solid rgba(0,212,170,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; color: var(--accent2); font-weight: 700;
-    flex-shrink: 0;
-  }
-  .form-success strong { color: var(--accent2); font-size: 14px; display: block; margin-bottom: 2px; }
-  .form-success p { font-size: 13px; color: var(--muted); margin: 0; }
-
-  .form-error {
-    display: flex; align-items: center; gap: 10px;
-    background: rgba(239,68,68,0.08);
-    border: 1px solid rgba(239,68,68,0.25);
-    border-radius: 10px; padding: 12px 16px;
-    margin-top: 16px; font-size: 13px; color: #fca5a5;
-    animation: fadeUp 0.4s var(--expo);
-  }
-
   /* ── FLOATING PARTICLES ── */
   .particle {
     position: fixed; width: 3px; height: 3px; border-radius: 50%;
@@ -580,6 +463,37 @@
     90%  { opacity: 0.2; }
     100% { opacity: 0; transform: translateY(-120px) scale(0.3); }
   }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1240px) {
+    .hero, .page-body { width: 100%; }
+    .workflows, .outcomes { grid-template-columns: repeat(2, 1fr); }
+    .wf-card.span2 { grid-column: span 2; }
+  }
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 36px; }
+    .workflows, .outcomes { grid-template-columns: 1fr; }
+    .wf-card.span2 { grid-column: span 1; }
+    .demo-box { flex-direction: column; }
+    .ba-row { grid-template-columns: 1fr; }
+  }
+
+  /* ── PRINT / PDF ── keep the dark design, just freeze animations ── */
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: var(--bg) !important; padding-top: 0 !important; }
+    .back-nav, #pgbar, .particle { display: none !important; }
+    /* reveal everything (animations don't run in print) */
+    [data-r] { opacity: 1 !important; transform: none !important; }
+    .arch-node, .arch-arrow { opacity: 1 !important; transform: none !important; }
+    .hero-word { opacity: 1 !important; transform: none !important; -webkit-text-fill-color: transparent !important; }
+    .badge, .hero p, .tag { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .slack-bot { opacity: 1 !important; transform: none !important; }
+    .hero { padding-top: 40px; }
+    /* avoid awkward page breaks through cards */
+    .wf-card, .outcome-card, .stat, .arch, .ba-table, .demo-box, .stack-item, .ba-row { break-inside: avoid; page-break-inside: avoid; }
+    .section-title, .section-label { break-after: avoid; page-break-after: avoid; }
+  }
 </style>
 </head>
 <body>
@@ -590,7 +504,7 @@
 <!-- BACK NAV -->
 <nav class="back-nav">
   <div class="back-nav-inner">
-    <a href="index.html" class="back-link">
+    <a href="../" class="back-link">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -607,20 +521,20 @@
   <div class="orb-b"></div>
   <div class="orb-c"></div>
 
-  <div class="badge"><span class="badge-dot"></span> Live Production System</div>
+  <div class="badge"><span class="badge-dot"></span> AI Operations Case Study</div>
   <h1>
-    <span class="hero-word" style="animation-delay:0.35s">CareFlow&nbsp;</span><span class="hero-word" style="animation-delay:0.48s">AI</span><br>
-    <span class="hero-word" style="animation-delay:0.62s">Homecare&nbsp;</span><span class="hero-word" style="animation-delay:0.76s">Operations</span>
+    <span class="hero-word" style="animation-delay:0.35s">AI&nbsp;Mortgage</span><br>
+    <span class="hero-word" style="animation-delay:0.50s">Aggregator&nbsp;</span><span class="hero-word" style="animation-delay:0.66s">Ops&nbsp;System</span>
   </h1>
-  <p>Eight interconnected automation pipelines that run a 40-caregiver, 65-client homecare agency end-to-end — scheduling, compliance, visit verification, and family communication, fully automated, running 24/7.</p>
+  <p>A centralised AI operations brain for an Australian mortgage aggregator — it onboards brokers, categorises &amp; scores every lead, routes it to the right broker in seconds, tracks the loan pipeline, and keeps every file audit-ready. A digital operations manager that never sleeps.</p>
   <div class="hero-tags">
     <span class="tag accent" style="animation-delay:1.0s">n8n Automation</span>
-    <span class="tag accent" style="animation-delay:1.08s">LLM-Powered</span>
-    <span class="tag green"  style="animation-delay:1.16s">Google Workspace</span>
-    <span class="tag green"  style="animation-delay:1.24s">Telegram Bot</span>
-    <span class="tag"        style="animation-delay:1.32s">EVV Compliance</span>
-    <span class="tag"        style="animation-delay:1.40s">100% Free Stack</span>
-    <span class="tag"        style="animation-delay:1.48s">Groq / LLaMA 3.3</span>
+    <span class="tag accent" style="animation-delay:1.08s">OpenAI / LLM</span>
+    <span class="tag green"  style="animation-delay:1.16s">Airtable</span>
+    <span class="tag green"  style="animation-delay:1.24s">Tally Forms</span>
+    <span class="tag"        style="animation-delay:1.32s">Discord</span>
+    <span class="tag"        style="animation-delay:1.40s">Gmail</span>
+    <span class="tag"        style="animation-delay:1.48s">Looker Studio</span>
   </div>
 </div>
 
@@ -631,114 +545,142 @@
 <!-- STATS -->
 <div class="stats" data-r>
   <div class="stat">
-    <div class="stat-num" data-count="8">0</div>
-    <div class="stat-label">Automated Pipelines</div>
+    <div class="stat-num" data-count="7">7</div>
+    <div class="stat-label">Automated Workflows</div>
   </div>
   <div class="stat">
-    <div class="stat-num">~20 hrs</div>
-    <div class="stat-label">Coordinator Hours Saved / Week</div>
+    <div class="stat-num" data-count="15" data-suffix="+">15+</div>
+    <div class="stat-label">Hours Saved / Week</div>
   </div>
   <div class="stat">
-    <div class="stat-num">$0</div>
-    <div class="stat-label">Monthly Software Cost</div>
+    <div class="stat-num">&lt;60s</div>
+    <div class="stat-label">Lead Assignment</div>
   </div>
   <div class="stat">
-    <div class="stat-num" data-count="65" data-suffix="+">0</div>
-    <div class="stat-label">Active Clients Served</div>
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">Compliance Watch</div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<div data-r><div class="section-label">The Situation</div></div>
+<div class="section-title" data-r data-d="1">From Spreadsheet Chaos to a Single Operations Brain</div>
+<div class="section-sub" data-r data-d="2">Aussie Mortgage Group runs 5 specialist brokers across NSW, VIC, QLD &amp; WA — previously managed by spreadsheets, email threads, phone calls and shared folders.</div>
+
+<div class="outcomes" data-r data-d="2" style="margin-bottom:50px">
+  <div class="outcome-card">
+    <span class="outcome-icon">🐌</span>
+    <div class="outcome-title">Slow &amp; inconsistent</div>
+    <div class="outcome-text">Broker onboarding took weeks. Leads were assigned by gut feel — and some were simply forgotten before anyone followed up.</div>
+  </div>
+  <div class="outcome-card">
+    <span class="outcome-icon">🕳️</span>
+    <div class="outcome-title">Zero visibility</div>
+    <div class="outcome-text">Nobody could answer "where is every loan right now?" Compliance records were scattered and audit-readiness was a fire drill.</div>
+  </div>
+  <div class="outcome-card">
+    <span class="outcome-icon">📚</span>
+    <div class="outcome-title">Buried in admin</div>
+    <div class="outcome-text">Management had no reporting and the team spent its capacity coordinating instead of closing loans.</div>
   </div>
 </div>
 
 <!-- ARCHITECTURE -->
 <div data-r><div class="section-label">System Architecture</div></div>
 <div class="section-title" data-r data-d="1">How It All Connects</div>
-<div class="section-sub" data-r data-d="2">Every pipeline follows the same disciplined pattern — and Google Sheets remains the single source of truth across all eight.</div>
+<div class="section-sub" data-r data-d="2">Forms feed data in, n8n orchestrates the logic + AI, Airtable is the single source of truth, and notifications + dashboards flow out.</div>
 
 <div class="arch" data-arch>
   <div class="arch-flow">
-    <div class="arch-node"><div class="arch-icon purple">⚡</div><div class="arch-label">Trigger<br>Event / Schedule</div></div>
+    <div class="arch-node"><div class="arch-icon green">🗂️</div><div class="arch-label">Tally<br>Forms</div></div>
     <div class="arch-arrow">→</div>
-    <div class="arch-node"><div class="arch-icon green">📊</div><div class="arch-label">Google Sheets<br>Source of Truth</div></div>
+    <div class="arch-node"><div class="arch-icon purple">⚙️</div><div class="arch-label">n8n<br>Workflows</div></div>
     <div class="arch-arrow">→</div>
-    <div class="arch-node"><div class="arch-icon purple">🧠</div><div class="arch-label">LLaMA 3.3<br>via Groq</div></div>
+    <div class="arch-node"><div class="arch-icon purple">🧠</div><div class="arch-label">OpenAI<br>Categorise/Score</div></div>
     <div class="arch-arrow">→</div>
-    <div class="arch-node"><div class="arch-icon orange">⚙️</div><div class="arch-label">Action<br>Calendar / Msg / Email</div></div>
+    <div class="arch-node"><div class="arch-icon orange">🗃️</div><div class="arch-label">Airtable<br>Source of Truth</div></div>
     <div class="arch-arrow">→</div>
-    <div class="arch-node"><div class="arch-icon blue">📩</div><div class="arch-label">Family /<br>Caregiver / Owner</div></div>
+    <div class="arch-node"><div class="arch-icon pink">💬</div><div class="arch-label">Discord +<br>Gmail Alerts</div></div>
     <div class="arch-arrow">→</div>
-    <div class="arch-node"><div class="arch-icon pink">✅</div><div class="arch-label">Logged Back<br>to Database</div></div>
+    <div class="arch-node"><div class="arch-icon blue">📊</div><div class="arch-label">Looker Studio<br>Dashboards</div></div>
   </div>
 </div>
 
 <!-- WORKFLOWS -->
-<div data-r><div class="section-label">Workflow Breakdown</div></div>
-<div class="section-title" data-r data-d="1">8 Automated Pipelines</div>
-<div class="section-sub" data-r data-d="2">Each pipeline runs automatically — triggered by an event or a schedule — and shares one source of truth: a Google Sheets database.</div>
+<div data-r><div class="section-label">Module Breakdown</div></div>
+<div class="section-title" data-r data-d="1">7 Interconnected Workflows</div>
+<div class="section-sub" data-r data-d="2">Five business modules plus two cross-cutting layers — every one writing to the same central database.</div>
 
 <div class="workflows">
   <div class="wf-card c1" data-r data-d="1">
-    <div class="wf-num">P1 · Form Trigger</div>
-    <span class="wf-emoji">📋</span>
-    <div class="wf-name">Client Intake &amp; Onboarding</div>
-    <div class="wf-desc">A new referral submits an inquiry form. AI classifies urgency and care level, an intake packet is emailed to the family automatically, and the coordinator is notified — within minutes, with zero manual data entry.</div>
-    <div class="wf-tags"><span class="wf-tag">Google Forms</span><span class="wf-tag">Groq AI</span><span class="wf-tag">Gmail</span></div>
+    <div class="wf-num">M1 · Webhook</div>
+    <span class="wf-emoji">🧑‍💼</span>
+    <div class="wf-name">Broker Onboarding</div>
+    <div class="wf-desc">A broker application auto-creates their record, a Google Drive folder, an onboarding checklist, a welcome email and an ops alert — then chases missing items until they're compliant.</div>
+    <div class="wf-tags"><span class="wf-tag">Airtable</span><span class="wf-tag">Drive</span><span class="wf-tag">Gmail</span><span class="wf-tag">Discord</span></div>
   </div>
-  <div class="wf-card c2" data-r data-d="2">
-    <div class="wf-num">P2 · Form Trigger</div>
-    <span class="wf-emoji">🧑‍⚕️</span>
-    <div class="wf-name">Caregiver Onboarding &amp; Documents</div>
-    <div class="wf-desc">New applications are screened by AI (qualified / needs review / not qualified), a personalized document checklist is emailed automatically, and a welcome message fires the moment onboarding is complete.</div>
-    <div class="wf-tags"><span class="wf-tag">Google Forms</span><span class="wf-tag">Groq AI</span><span class="wf-tag">Auto-Triage</span></div>
+
+  <div class="wf-card c2 span2" data-r data-d="2">
+    <div class="wf-num">M2 · Webhook · AI Flagship</div>
+    <span class="wf-emoji">🎯</span>
+    <div class="wf-name">Lead Intake &amp; AI Assignment</div>
+    <div class="wf-desc">The centrepiece. Every lead is captured, then AI <strong style="color:#a09fff">categorises</strong> it (First Home Buyer / Refinance / Investment / Self-Employed / Commercial), <strong style="color:#a09fff">scores</strong> it 0–100, and a matching engine assigns the <strong style="color:#a09fff">best broker by specialty + state + live workload</strong>. The broker is notified instantly by email &amp; Discord and a calendar follow-up is created — so no lead is ever forgotten.</div>
+    <div class="wf-tags"><span class="wf-tag">OpenAI</span><span class="wf-tag">Lead Scoring</span><span class="wf-tag">Smart Routing</span><span class="wf-tag">Calendar</span><span class="wf-tag">Discord</span></div>
   </div>
+
   <div class="wf-card c3" data-r data-d="3">
-    <div class="wf-num">P3 · Smart Matching</div>
-    <span class="wf-emoji">🧠</span>
-    <div class="wf-name">AI Smart Scheduling Engine</div>
-    <div class="wf-desc">AI reviews every active caregiver against a client's required skills, zone, availability, and existing schedule — then recommends the best match with a stated reason and creates the calendar event automatically.</div>
-    <div class="wf-tags"><span class="wf-tag">Groq AI</span><span class="wf-tag">Google Calendar</span><span class="wf-tag">Smart Matching</span></div>
+    <div class="wf-num">M3 · Webhook + Cron</div>
+    <span class="wf-emoji">📈</span>
+    <div class="wf-name">Loan Pipeline Management</div>
+    <div class="wf-desc">Tracks 8 stages from New Lead to Settlement. Timestamps every move, measures time-in-stage, and a daily sweep nudges stalled files — escalating real bottlenecks to the ops manager.</div>
+    <div class="wf-tags"><span class="wf-tag">Airtable</span><span class="wf-tag">SLA Tracking</span><span class="wf-tag">Auto-Escalation</span></div>
   </div>
+
   <div class="wf-card c4" data-r data-d="4">
-    <div class="wf-num">P4 · Telegram Trigger</div>
-    <span class="wf-emoji">⏱️</span>
-    <div class="wf-name">Clock-In / Clock-Out + EVV</div>
-    <div class="wf-desc">Caregivers clock in and out with one command from their phone. The system timestamps the visit, calculates hours, alerts the coordinator when someone is 15+ minutes late, and produces the EVV compliance record.</div>
-    <div class="wf-tags"><span class="wf-tag">Telegram Bot</span><span class="wf-tag">EVV Compliance</span><span class="wf-tag">Real-Time</span></div>
-  </div>
-  <div class="wf-card c5" data-r data-d="5">
-    <div class="wf-num">P5 · AI Structuring</div>
-    <span class="wf-emoji">📝</span>
-    <div class="wf-name">AI Care Notes Processor</div>
-    <div class="wf-desc">Caregivers submit visit notes in plain language. AI restructures them into clinical SOAP format, checks them against the client's care plan for completeness, and flags the coordinator if anything concerning appears.</div>
-    <div class="wf-tags"><span class="wf-tag">Groq AI</span><span class="wf-tag">SOAP Notes</span><span class="wf-tag">Auto-Flagging</span></div>
-  </div>
-  <div class="wf-card c6" data-r data-d="6">
-    <div class="wf-num">P6 · Event-Driven</div>
-    <span class="wf-emoji">💬</span>
-    <div class="wf-name">Family Communication Hub</div>
-    <div class="wf-desc">The moment a caregiver clocks out, the family automatically receives a visit summary. Every Sunday, each family also receives a consolidated weekly summary — no one has to remember to send an update.</div>
-    <div class="wf-tags"><span class="wf-tag">Gmail</span><span class="wf-tag">Groq AI</span><span class="wf-tag">Auto-Routing</span></div>
-  </div>
-  <div class="wf-card c7" data-r data-d="7">
-    <div class="wf-num">P7 · Daily · 7 AM</div>
+    <div class="wf-num">M4 · Webhook · AI</div>
     <span class="wf-emoji">🛡️</span>
-    <div class="wf-name">Compliance &amp; Certification Tracker</div>
-    <div class="wf-desc">Every morning, the system checks every caregiver's HHA, CPR, TB, background check, and HIPAA status against expiry dates — sending 60/30/14-day renewal reminders and escalating missed deadlines automatically.</div>
-    <div class="wf-tags"><span class="wf-tag">Groq AI</span><span class="wf-tag">Compliance</span><span class="wf-tag">Auto-Alerts</span></div>
+    <div class="wf-name">AI Compliance Monitoring</div>
+    <div class="wf-desc">When a broker marks a file ready, AI checks the 6 mandatory artefacts (incl. Best Interest Duty), detects missing documents, writes an audit-ready summary and flags risk — before a human officer signs off.</div>
+    <div class="wf-tags"><span class="wf-tag">OpenAI</span><span class="wf-tag">BID Check</span><span class="wf-tag">Risk Flags</span></div>
   </div>
-  <div class="wf-card c1 span2" data-r data-d="8">
-    <div class="wf-num">P8 · Weekly · Monday 8 AM</div>
+
+  <div class="wf-card c5" data-r data-d="5">
+    <div class="wf-num">M5 · Looker Studio</div>
     <span class="wf-emoji">📊</span>
-    <div class="wf-name">Weekly Operations Intelligence Report</div>
-    <div class="wf-desc">The centerpiece. Every Monday, the system pulls a full week of data — hours vs. scheduled, missed visits, late clock-ins, outstanding notes, expiring certifications — and <strong style="color:#a09fff">AI writes a plain-English executive summary</strong> with action items, delivered straight to the owner's inbox. No dashboards, no manual compiling — just answers.</div>
-    <div class="wf-tags"><span class="wf-tag">Groq / LLaMA 3.3</span><span class="wf-tag">Gmail Reports</span><span class="wf-tag">Scheduled</span><span class="wf-tag">Executive Summary</span><span class="wf-tag">Action Items</span></div>
+    <div class="wf-name">Executive Dashboards</div>
+    <div class="wf-desc">Live, role-specific dashboards: broker performance, the lead funnel, pipeline health and compliance posture — plus a weekly snapshot emailed to the owner automatically.</div>
+    <div class="wf-tags"><span class="wf-tag">Looker</span><span class="wf-tag">Real-Time BI</span><span class="wf-tag">Auto-Digest</span></div>
+  </div>
+
+  <div class="wf-card c6" data-r data-d="6">
+    <div class="wf-num">WF5 · Scheduled</div>
+    <span class="wf-emoji">⏰</span>
+    <div class="wf-name">Reminders &amp; Digests</div>
+    <div class="wf-desc">Cron-driven jobs handle follow-up reminders, onboarding chasers, stalled-file sweeps, weekly pipeline reports and broker scorecards — keeping everyone on track without anyone asking.</div>
+    <div class="wf-tags"><span class="wf-tag">Cron</span><span class="wf-tag">Gmail</span><span class="wf-tag">Discord</span></div>
+  </div>
+
+  <div class="wf-card c7" data-r data-d="7">
+    <div class="wf-num">WF0 · Error Trigger</div>
+    <span class="wf-emoji">🚨</span>
+    <div class="wf-name">Global Error Handler</div>
+    <div class="wf-desc">A single safety net catches any failed execution across every workflow, logs it to the activity table, and alerts ops on Discord — so no failure is ever silent.</div>
+    <div class="wf-tags"><span class="wf-tag">Resilience</span><span class="wf-tag">Audit Log</span></div>
+  </div>
+
+  <div class="wf-card c7" data-r data-d="8" style="display:flex;flex-direction:column;justify-content:center;background:rgba(108,99,255,0.05);border-color:rgba(108,99,255,0.2);">
+    <div style="font-size:36px;margin-bottom:12px;">🗃️</div>
+    <div style="font-size:14px;font-weight:700;margin-bottom:6px;color:#a09fff;">One Source of Truth</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.6;">6 linked Airtable tables — Brokers, Leads, Loan Applications, Compliance, Documents &amp; Activities — that every workflow reads &amp; writes.</div>
   </div>
 </div>
 
-<!-- LIVE DEMO -->
+<!-- LEAD FLOW DEMO -->
 <div class="demo-box" data-r id="slackDemo">
   <div class="demo-left">
-    <div class="section-label" style="margin-bottom:8px">Live Demo</div>
-    <h3>Clock In From Your Phone, Instantly Logged</h3>
-    <p>Caregivers don't need an app or a login — just a single Telegram command. The system timestamps the visit, calculates hours, and produces the EVV compliance record automatically, in real time.</p>
+    <div class="section-label" style="margin-bottom:8px">Live Flow</div>
+    <h3>A Lead Routed in Under 60 Seconds</h3>
+    <p>A new enquiry hits the intake form. The AI classifies and scores it, picks the best-matched broker by specialty, state and workload, and fires the notification — all before a human would have even opened the spreadsheet.</p>
   </div>
   <div class="demo-right">
     <div class="slack-bubble">
@@ -746,11 +688,11 @@
       <div class="slack-bot" id="slackBot">
         <div class="slack-avatar">🤖</div>
         <div>
-          <div class="slack-name">CareFlow Bot</div>
+          <div class="slack-name">AMG Ops Bot</div>
           <div class="slack-reply">
-            ✅ <strong>Clocked in</strong> — Maria S. at 123 Oak St, 9:02 AM.<br>
-            EVV record logged. Visit duration tracking started.<br>
-            <strong>Family notified:</strong> "Maria has arrived for today's visit."
+            🔥 <strong>Hot lead (Score 82)</strong> — Refinance, VIC, $640k.<br>
+            Assigned to <strong>Broker 2 · Refinance Specialist (VIC)</strong> — best specialty + state match, capacity 7/15.<br>
+            📅 Follow-up reminder set for <strong>today, 5:00 PM</strong>.
           </div>
         </div>
       </div>
@@ -760,117 +702,104 @@
 
 <!-- TECH STACK -->
 <div data-r><div class="section-label">Technology</div></div>
-<div class="section-title" data-r data-d="1">Built On a 100% Free Stack</div>
-<div class="section-sub" data-r data-d="2" style="margin-bottom:20px">Every tool runs on a free tier — making the system realistic for small agencies that cannot justify enterprise software costs.</div>
+<div class="section-title" data-r data-d="1">Built With</div>
+<div class="section-sub" data-r data-d="2" style="margin-bottom:20px">All free or low-cost tools — no custom frontend, almost no custom code. Runs for ~$15–25/month.</div>
 
 <div class="stack">
   <div class="stack-item" data-r data-d="1"><span class="stack-icon">⚙️</span><div><div class="stack-name">n8n</div><div class="stack-type">Workflow Orchestration</div></div></div>
-  <div class="stack-item" data-r data-d="2"><span class="stack-icon">🧠</span><div><div class="stack-name">LLaMA 3.3 70B</div><div class="stack-type">AI Model via Groq</div></div></div>
-  <div class="stack-item" data-r data-d="3"><span class="stack-icon">📊</span><div><div class="stack-name">Google Sheets</div><div class="stack-type">Source of Truth Database</div></div></div>
-  <div class="stack-item" data-r data-d="4"><span class="stack-icon">📅</span><div><div class="stack-name">Google Calendar</div><div class="stack-type">Shift Scheduling</div></div></div>
-  <div class="stack-item" data-r data-d="5"><span class="stack-icon">📧</span><div><div class="stack-name">Gmail</div><div class="stack-type">Family &amp; Staff Comms</div></div></div>
-  <div class="stack-item" data-r data-d="6"><span class="stack-icon">💬</span><div><div class="stack-name">Telegram Bot API</div><div class="stack-type">Mobile Clock-In &amp; Alerts</div></div></div>
+  <div class="stack-item" data-r data-d="2"><span class="stack-icon">🧠</span><div><div class="stack-name">OpenAI</div><div class="stack-type">Classify · Score · Compliance</div></div></div>
+  <div class="stack-item" data-r data-d="3"><span class="stack-icon">🗃️</span><div><div class="stack-name">Airtable</div><div class="stack-type">Central Database</div></div></div>
+  <div class="stack-item" data-r data-d="4"><span class="stack-icon">🗂️</span><div><div class="stack-name">Tally Forms</div><div class="stack-type">Lead &amp; Broker Intake</div></div></div>
+  <div class="stack-item" data-r data-d="5"><span class="stack-icon">💬</span><div><div class="stack-name">Discord</div><div class="stack-type">Internal Alerts</div></div></div>
+  <div class="stack-item" data-r data-d="6"><span class="stack-icon">📧</span><div><div class="stack-name">Gmail</div><div class="stack-type">External Email</div></div></div>
+  <div class="stack-item" data-r data-d="7"><span class="stack-icon">📊</span><div><div class="stack-name">Looker Studio</div><div class="stack-type">Dashboards &amp; BI</div></div></div>
+  <div class="stack-item" data-r data-d="8"><span class="stack-icon">📁</span><div><div class="stack-name">Google Drive / Calendar</div><div class="stack-type">Docs &amp; Follow-ups</div></div></div>
 </div>
 
-<!-- OUTCOMES -->
+<!-- OUTCOMES / BENEFITS -->
 <div data-r><div class="section-label">Business Impact</div></div>
-<div class="section-title" data-r data-d="1">What This Replaces</div>
-<div class="section-sub" data-r data-d="2">Eliminates roughly half of a full-time coordinator's workload — without adding headcount.</div>
+<div class="section-title" data-r data-d="1">The Benefits</div>
+<div class="section-sub" data-r data-d="2">What the aggregator gains the day this goes live.</div>
 
 <div class="outcomes">
   <div class="outcome-card" data-r data-d="1">
     <span class="outcome-icon">⏱️</span>
-    <div class="outcome-title">~20 hrs/week saved</div>
-    <div class="outcome-text">No more chasing clock-ins, cross-referencing schedules by hand, or compiling weekly reports. The system runs continuously and only surfaces what needs attention.</div>
+    <div class="outcome-title">15+ hrs/week saved</div>
+    <div class="outcome-text">No more manual record creation, lead routing, follow-up chasing, file-checking or report building. The system does the admin; the team sells loans. Roughly a 60–70% cut in operational admin.</div>
   </div>
   <div class="outcome-card" data-r data-d="2">
-    <span class="outcome-icon">🛡️</span>
-    <div class="outcome-title">Lower compliance risk</div>
-    <div class="outcome-text">Automatic 60/30/14-day certification alerts catch HHA, CPR, TB, and HIPAA lapses before they become liabilities — or lost contracts.</div>
+    <span class="outcome-icon">⚡</span>
+    <div class="outcome-title">No lead left behind</div>
+    <div class="outcome-text">Every lead is scored and assigned in under 60 seconds, with an enforced follow-up reminder. Warm enquiries stop going cold — directly protecting revenue.</div>
   </div>
   <div class="outcome-card" data-r data-d="3">
-    <span class="outcome-icon">💬</span>
-    <div class="outcome-title">Higher family satisfaction</div>
-    <div class="outcome-text">Proactive visit summaries and weekly updates replace the anxiety of "no news" with consistent, automatic reassurance — every single time.</div>
+    <span class="outcome-icon">🛡️</span>
+    <div class="outcome-title">Always audit-ready</div>
+    <div class="outcome-text">AI pre-screens every file for the 6 mandatory compliance artefacts and logs an explainable record. Compliance becomes a continuous state, not an annual fire drill.</div>
+  </div>
+  <div class="outcome-card" data-r data-d="4">
+    <span class="outcome-icon">👁️</span>
+    <div class="outcome-title">Total visibility</div>
+    <div class="outcome-text">The owner sees broker performance, the lead funnel, pipeline health and compliance risk in real time — and gets a weekly summary in their inbox without lifting a finger.</div>
+  </div>
+  <div class="outcome-card" data-r data-d="5">
+    <span class="outcome-icon">⚖️</span>
+    <div class="outcome-title">Fair, consistent routing</div>
+    <div class="outcome-text">Leads are matched on specialty, state and live workload — balancing distribution across brokers and removing the bias and guesswork of manual assignment.</div>
+  </div>
+  <div class="outcome-card" data-r data-d="6">
+    <span class="outcome-icon">💸</span>
+    <div class="outcome-title">Enterprise-grade for ~$20/mo</div>
+    <div class="outcome-text">Built entirely on free and low-cost tools. A complete digital operations manager for the price of a couple of coffees a week — and it scales without a rebuild.</div>
   </div>
 </div>
 
-<div class="divider" data-r></div>
+<!-- BEFORE / AFTER -->
+<div data-r><div class="section-label">Before vs After</div></div>
+<div class="section-title" data-r data-d="1">Measurable Change</div>
+<div class="section-sub" data-r data-d="2">The shift from manual operations to an automated operating system.</div>
 
-<!-- CONTACT FORM -->
-<div class="form-section" data-r>
-  <div class="form-header">
-    <div class="section-label">Work Together</div>
-    <div class="section-title">Want Something Like This For Your Business?</div>
-    <div class="section-sub">Tell me about your operation and I'll get back to you within 24 hours.</div>
+<div class="ba-table" data-r data-d="2">
+  <div class="ba-row head">
+    <div class="ba-cell">Metric</div>
+    <div class="ba-cell">Before (Manual)</div>
+    <div class="ba-cell">After (Automated)</div>
   </div>
-
-  <form id="inquiryForm" class="inquiry-form" novalidate>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="f-name">Your Name <span class="req">*</span></label>
-        <input type="text" id="f-name" name="name" placeholder="Juan dela Cruz" required />
-      </div>
-      <div class="form-group">
-        <label for="f-email">Email Address <span class="req">*</span></label>
-        <input type="email" id="f-email" name="email" placeholder="you@example.com" required />
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="f-company">Company / Agency Name</label>
-        <input type="text" id="f-company" name="company" placeholder="Sunrise Homecare" />
-      </div>
-      <div class="form-group">
-        <label for="f-budget">Project Budget <span class="req">*</span></label>
-        <select id="f-budget" name="budget" required>
-          <option value="" disabled selected>Select a range</option>
-          <option value="Under $500">Under $500</option>
-          <option value="$500 – $2,000">$500 – $2,000</option>
-          <option value="$2,000 – $5,000">$2,000 – $5,000</option>
-          <option value="$5,000+">$5,000+</option>
-          <option value="Not sure yet">Not sure yet — let's talk</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="f-message">What do you need automated? <span class="req">*</span></label>
-      <textarea id="f-message" name="message" rows="4" placeholder="Describe your current pain points — manual scheduling, compliance tracking, reports you dread building, updates you wish sent themselves..." required></textarea>
-    </div>
-
-    <div class="form-group">
-      <label for="f-source">How did you find me? <span class="optional">(optional)</span></label>
-      <input type="text" id="f-source" name="source" placeholder="LinkedIn, Google, referral..." />
-    </div>
-
-    <div class="form-footer">
-      <button type="submit" class="submit-btn" id="submitBtn">
-        <span class="btn-text">Send Inquiry</span>
-        <span class="btn-icon">→</span>
-        <span class="btn-spinner" style="display:none">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-          </svg>
-        </span>
-      </button>
-      <p class="form-note">No spam. I reply personally within 24 hours.</p>
-    </div>
-
-    <div class="form-success" id="formSuccess" style="display:none">
-      <span class="success-icon">✓</span>
-      <div>
-        <strong>Inquiry sent!</strong>
-        <p>Thanks! I'll review your details and reply within 24 hours.</p>
-      </div>
-    </div>
-
-    <div class="form-error" id="formError" style="display:none">
-      <span>⚠️</span>
-      <span id="errorMsg">Something went wrong. Please try again or email me directly.</span>
-    </div>
-  </form>
+  <div class="ba-row">
+    <div class="ba-cell metric">Broker onboarding</div>
+    <div class="ba-cell before">2–3 weeks</div>
+    <div class="ba-cell after">2–3 days, system-driven</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-cell metric">Lead → broker assignment</div>
+    <div class="ba-cell before">Hours / days, inconsistent</div>
+    <div class="ba-cell after">&lt; 60 seconds, rules-based</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-cell metric">Forgotten leads</div>
+    <div class="ba-cell before">Common</div>
+    <div class="ba-cell after">Eliminated (enforced follow-up)</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-cell metric">Pipeline visibility</div>
+    <div class="ba-cell before">None</div>
+    <div class="ba-cell after">Real-time dashboard</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-cell metric">Compliance review</div>
+    <div class="ba-cell before">Manual, late, inconsistent</div>
+    <div class="ba-cell after">AI pre-screen on every file</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-cell metric">Management reporting</div>
+    <div class="ba-cell before">Ad-hoc, manual</div>
+    <div class="ba-cell after">Live + weekly auto-digest</div>
+  </div>
+  <div class="ba-row">
+    <div class="ba-cell metric">Weekly admin hours</div>
+    <div class="ba-cell before">High &amp; growing</div>
+    <div class="ba-cell after">~60–70% reduction</div>
+  </div>
 </div>
 
 <div class="divider" data-r></div>
@@ -879,8 +808,9 @@
 <div class="footer" data-r>
   <div class="footer-left">
     Built by <strong>Paolo Blanco</strong> · AI Automation Engineer<br>
-    <span style="font-size:12px">n8n · LLM Integration · Workflow Architecture · Google Workspace · Telegram Bots</span>
+    <span style="font-size:12px">n8n · LLM Integration · Workflow Architecture · Airtable · Compliance Automation</span>
   </div>
+  <a href="../" class="cta-btn">View More Work →</a>
 </div>
 
 </div><!-- /page-body -->
@@ -901,7 +831,9 @@ const revealObs = new IntersectionObserver((entries) => {
 revealEls.forEach(el => revealObs.observe(el));
 
 // ── STAT COUNTERS ──
+let staticMode = false;
 function animateCount(el, target, suffix) {
+  if (staticMode) { el.textContent = target + (suffix || ''); return; }
   const dur = 1400, start = performance.now();
   const easeOut = t => 1 - Math.pow(1 - t, 3);
   const tick = (now) => {
@@ -938,11 +870,11 @@ document.querySelectorAll('.wf-card, .outcome-card').forEach(card => {
   });
 });
 
-// ── CLOCK-IN DEMO TYPING ANIMATION ──
+// ── LEAD-FLOW TYPING ANIMATION ──
 const slackDemo = document.getElementById('slackDemo');
 const slackCmd  = document.getElementById('slackCmd');
 const slackBot  = document.getElementById('slackBot');
-const fullCmd   = "📍 /clockin Maria S. — 123 Oak St";
+const fullCmd   = "📥 New lead: Sarah M. — \"Want to refinance my VIC home, ~$640k\"";
 let typingDone  = false;
 
 function typeSlack() {
@@ -953,10 +885,10 @@ function typeSlack() {
   const type = () => {
     if (i < fullCmd.length) {
       slackCmd.innerHTML = fullCmd.slice(0, ++i) + '<span class="typing-cursor"></span>';
-      setTimeout(type, i < 3 ? 80 : 40);
+      setTimeout(type, i < 3 ? 70 : 28);
     } else {
       slackCmd.innerHTML = fullCmd;
-      setTimeout(() => slackBot.classList.add('show'), 400);
+      setTimeout(() => slackBot.classList.add('show'), 450);
     }
   };
   setTimeout(type, 300);
@@ -966,6 +898,21 @@ const demoObs = new IntersectionObserver((entries) => {
   if (entries[0].isIntersecting) { typeSlack(); demoObs.disconnect(); }
 }, { threshold: 0.5 });
 demoObs.observe(slackDemo);
+
+// ── PRINT / PDF SAFETY: reveal everything & finalise counters ──
+function finalizeForStatic() {
+  staticMode = true;
+  document.querySelectorAll('[data-r]').forEach(el => el.classList.add('on'));
+  document.querySelectorAll('[data-count]').forEach(el => {
+    el.textContent = el.dataset.count + (el.dataset.suffix || '');
+  });
+  if (archEl) archEl.classList.add('on');
+  if (slackBot) slackBot.classList.add('show');
+  if (slackCmd) slackCmd.innerHTML = fullCmd;
+}
+window.addEventListener('beforeprint', finalizeForStatic);
+if (window.matchMedia && window.matchMedia('print').matches) finalizeForStatic();
+if (location.hash === '#static') finalizeForStatic();
 
 // ── MOUSE PARALLAX ON HERO ORBS ──
 const orbA = document.querySelector('.orb-a');
@@ -992,67 +939,6 @@ function spawnParticle() {
   setTimeout(() => p.remove(), (dur + delay) * 1000);
 }
 setInterval(spawnParticle, 600);
-
-// ── CONTACT FORM SUBMISSION ──
-const form       = document.getElementById('inquiryForm');
-const submitBtn  = document.getElementById('submitBtn');
-const formSuccess = document.getElementById('formSuccess');
-const formError  = document.getElementById('formError');
-const errorMsg   = document.getElementById('errorMsg');
-
-function setLoading(on) {
-  submitBtn.disabled = on;
-  submitBtn.querySelector('.btn-text').style.display = on ? 'none' : '';
-  submitBtn.querySelector('.btn-icon').style.display = on ? 'none' : '';
-  submitBtn.querySelector('.btn-spinner').style.display = on ? '' : 'none';
-}
-
-function validateField(el) {
-  const ok = el.value.trim() !== '' && (el.type !== 'email' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value));
-  el.classList.toggle('invalid', !ok);
-  return ok;
-}
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  formError.style.display = 'none';
-
-  const fields = ['f-name', 'f-email', 'f-budget', 'f-message'].map(id => document.getElementById(id));
-  const allValid = fields.map(validateField).every(Boolean);
-  if (!allValid) { fields.find(f => f.classList.contains('invalid'))?.focus(); return; }
-
-  setLoading(true);
-  try {
-    const payload = {
-      name:    document.getElementById('f-name').value.trim(),
-      email:   document.getElementById('f-email').value.trim(),
-      company: document.getElementById('f-company').value.trim(),
-      budget:  document.getElementById('f-budget').value,
-      message: document.getElementById('f-message').value.trim(),
-      source:  document.getElementById('f-source').value.trim(),
-      project: 'CareFlow AI — Homecare Operations',
-    };
-    const res = await fetch('https://n8n.jpaoblanco.online/webhook/portfolio-inquiry', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (!res.ok) throw new Error('Server error ' + res.status);
-    form.querySelectorAll('input,select,textarea').forEach(el => el.value = '');
-    submitBtn.style.display = 'none';
-    form.querySelector('.form-footer').style.display = 'none';
-    formSuccess.style.display = 'flex';
-  } catch (err) {
-    errorMsg.textContent = 'Something went wrong. Email me directly at blanco.jp19@gmail.com';
-    formError.style.display = 'flex';
-    setLoading(false);
-  }
-});
-
-// Clear invalid state on input
-form.querySelectorAll('input,select,textarea').forEach(el => {
-  el.addEventListener('input', () => el.classList.remove('invalid'));
-});
 </script>
 </body>
 </html>
