@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juan Paolo Blanco - Video Editor & Automation Specialist</title>
-  <meta name="description" content="Video Editor and Automation Specialist with 7+ years of experience in performance marketing, AI workflows, and web infrastructure. Based in Manila, Philippines.">
+  <meta name="description" content="Video Editor and Automation Specialist with 10+ years of experience in performance marketing, AI workflows, and web infrastructure. Based in Manila, Philippines.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -14,27 +14,37 @@
        Custom Properties
     =========================== */
     :root {
-      --bg:          #080808;
-      --bg-1:        #0f0f0f;
-      --bg-2:        #161616;
-      --surface:     #1a1a1a;
-      --border:      rgba(255,255,255,0.07);
-      --border-hover:rgba(25,25,112,0.35);
-      --text-1:      #f0ede8;
-      --text-2:      #6b6b6b;
-      --text-3:      #3a3a3a;
-      --accent:      #191970;
-      --accent-dim:  rgba(25,25,112,0.1);
-      --accent-glow: rgba(25,25,112,0.18);
-      --green:       #22c55e;
+      /* Cinematic blue-black base, subtle blue undertone for depth */
+      --bg:          #06070a;
+      --bg-1:        #0a0c11;
+      --bg-2:        #11141c;
+      --surface:     #151922;
+      --border:      rgba(255,255,255,0.08);
+      --border-hover:rgba(59,111,255,0.45);
+      --text-1:      #f2f4f8;
+      --text-2:      #8a8f9c;
+      --text-3:      #4a4f5c;
+      /* Single accent, electric blue */
+      --accent:      #3b6fff;
+      --accent-2:    #6a93ff;
+      --accent-dim:  rgba(59,111,255,0.12);
+      --accent-glow: rgba(59,111,255,0.22);
+      --green:       #2dd4a7;
+      /* Glass system, dialed up for visible frost */
+      --glass:        rgba(255,255,255,0.06);
+      --glass-2:      rgba(255,255,255,0.12);
+      --glass-border: rgba(255,255,255,0.18);
+      --glass-blur:   blur(26px) saturate(160%);
+      --shadow-glass: 0 28px 80px -24px rgba(0,0,0,0.9), 0 0 0 1px rgba(59,111,255,0.06), inset 0 1px 0 rgba(255,255,255,0.10);
+      --shadow-lift:  0 40px 110px -28px rgba(20,50,140,0.7), 0 0 0 1px rgba(59,111,255,0.22), inset 0 1px 0 rgba(255,255,255,0.12);
       --fd: 'Anton', sans-serif;
       --fb: 'Outfit', sans-serif;
       --fm: 'Space Mono', monospace;
       --fi: 'Inter', system-ui, sans-serif;
       --maxw: 1240px;
       --navh: 68px;
-      --r:   10px;
-      --rs:  6px;
+      --r:   14px;
+      --rs:  9px;
       --expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -99,9 +109,9 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 65% 55% at 18% 52%, rgba(35,35,150,0.38) 0%, transparent 58%),
-        radial-gradient(ellipse 50% 65% at 82% 38%, rgba(25,25,110,0.24) 0%, transparent 52%),
-        radial-gradient(ellipse 40% 38% at 52% 88%, rgba(15,15,80,0.2) 0%, transparent 50%);
+        radial-gradient(ellipse 65% 55% at 18% 52%, rgba(59,111,255,0.38) 0%, transparent 58%),
+        radial-gradient(ellipse 50% 65% at 82% 38%, rgba(59,111,255,0.24) 0%, transparent 52%),
+        radial-gradient(ellipse 40% 38% at 52% 88%, rgba(40,70,180,0.2) 0%, transparent 50%);
       animation: orbBreath 10s ease-in-out infinite alternate;
       pointer-events: none;
       z-index: 0;
@@ -462,7 +472,7 @@
       border-radius: 50%;
       background: radial-gradient(circle at center,
         rgba(255,255,255,0.035) 0%,
-        rgba(25,25,112,0.055)  35%,
+        rgba(59,111,255,0.055)  35%,
         transparent 70%);
       filter: blur(72px);
       pointer-events: none;
@@ -479,7 +489,7 @@
       top: 25%;
       width: 500px; height: 500px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(25,25,112,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(59,111,255,0.07) 0%, transparent 70%);
       filter: blur(56px);
       pointer-events: none;
       will-change: transform;
@@ -491,7 +501,7 @@
       bottom: 15%;
       width: 360px; height: 360px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(25,25,112,0.04) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(59,111,255,0.04) 0%, transparent 70%);
       filter: blur(80px);
       pointer-events: none;
       will-change: transform;
@@ -529,9 +539,9 @@
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(180,180,255,0.85);
-      background: rgba(25,25,112,0.14);
-      border: 1px solid rgba(65,105,225,0.3);
+      color: rgba(150,180,255,0.85);
+      background: rgba(59,111,255,0.14);
+      border: 1px solid rgba(99,140,255,0.3);
       padding: 7px 16px;
       border-radius: 100px;
       margin-bottom: 32px;
@@ -570,7 +580,7 @@
     /* Per-word clip-path reveal */
     .h-name .hw {
       display: inline-block;
-      background: linear-gradient(135deg, #f0ede8 0%, rgba(240,237,232,0.72) 55%, rgba(65,105,225,0.85) 100%);
+      background: linear-gradient(135deg, #f0ede8 0%, rgba(240,237,232,0.72) 55%, rgba(99,140,255,0.85) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -656,7 +666,7 @@
 
     .btn-a:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 36px rgba(25,25,112,0.28);
+      box-shadow: 0 14px 36px rgba(59,111,255,0.28);
     }
 
     .btn-b {
@@ -730,12 +740,12 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, rgba(65,105,225,0.9) 0%, rgba(120,130,255,0.4) 50%, transparent 100%);
+      background: linear-gradient(90deg, rgba(99,140,255,0.9) 0%, rgba(140,170,255,0.4) 50%, transparent 100%);
     }
 
     @keyframes hcGlow {
-      0%, 100% { box-shadow: 0 0 0 rgba(65,105,225,0); }
-      50%      { box-shadow: 0 0 46px rgba(65,105,225,0.13); }
+      0%, 100% { box-shadow: 0 0 0 rgba(99,140,255,0); }
+      50%      { box-shadow: 0 0 46px rgba(99,140,255,0.13); }
     }
 
     /* Traveling light beam along the card's top edge */
@@ -743,7 +753,7 @@
       position: absolute;
       top: 0; left: -30%;
       width: 30%; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(120,130,255,0.95), transparent);
+      background: linear-gradient(90deg, transparent, rgba(140,170,255,0.95), transparent);
       animation: hcScan 6s ease-in-out infinite 1.6s;
       pointer-events: none;
       z-index: 1;
@@ -786,8 +796,8 @@
     }
     .hc-stat:hover {
       transform: translateY(-3px);
-      border-color: rgba(120,130,255,0.4);
-      background: rgba(65,105,225,0.07);
+      border-color: rgba(140,170,255,0.4);
+      background: rgba(99,140,255,0.07);
     }
 
     .hc-stat-n {
@@ -796,7 +806,7 @@
       letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 6px;
-      background: linear-gradient(135deg, #fff 0%, rgba(120,130,255,0.8) 100%);
+      background: linear-gradient(135deg, #fff 0%, rgba(140,170,255,0.8) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -805,8 +815,8 @@
     .hc-stat:nth-child(2) .hc-stat-n { animation-delay: 0.5s; }
     .hc-stat:nth-child(3) .hc-stat-n { animation-delay: 1s; }
     @keyframes hcNumGlow {
-      0%, 100% { filter: drop-shadow(0 0 0 rgba(120,130,255,0)); }
-      50%      { filter: drop-shadow(0 0 9px rgba(120,130,255,0.5)); }
+      0%, 100% { filter: drop-shadow(0 0 0 rgba(140,170,255,0)); }
+      50%      { filter: drop-shadow(0 0 9px rgba(140,170,255,0.5)); }
     }
 
     .hc-stat-l {
@@ -830,7 +840,7 @@
       position: absolute;
       top: 0; left: -60%;
       width: 60%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(120,130,255,0.7), transparent);
+      background: linear-gradient(90deg, transparent, rgba(140,170,255,0.7), transparent);
       animation: dividerSweep 5s ease-in-out infinite 2.4s;
     }
 
@@ -867,7 +877,7 @@
     }
     .hc-list li:hover::before {
       width: 28px;
-      background: linear-gradient(90deg, var(--accent), rgba(120,130,255,0.3));
+      background: linear-gradient(90deg, var(--accent), rgba(140,170,255,0.3));
     }
 
     .hc-footer {
@@ -956,7 +966,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(120,130,255,0.9);
+      color: rgba(140,170,255,0.9);
       margin-bottom: 14px;
     }
 
@@ -964,7 +974,7 @@
       content: '';
       width: 24px;
       height: 2px;
-      background: linear-gradient(90deg, rgba(65,105,225,0.9), rgba(65,105,225,0.3));
+      background: linear-gradient(90deg, rgba(99,140,255,0.9), rgba(99,140,255,0.3));
       border-radius: 2px;
       flex-shrink: 0;
     }
@@ -1095,14 +1105,14 @@
       font-size: clamp(28px, 3vw, 38px);
       line-height: 1;
       margin-bottom: 6px;
-      background: linear-gradient(135deg, #fff 0%, rgba(120,130,255,0.9) 100%);
+      background: linear-gradient(135deg, #fff 0%, rgba(140,170,255,0.9) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .am-stat-num sup {
       font-size: 0.75em;
-      -webkit-text-fill-color: rgba(120,130,255,0.9);
+      -webkit-text-fill-color: rgba(140,170,255,0.9);
       vertical-align: super;
     }
 
@@ -1215,7 +1225,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(550px circle at var(--mx, 50%) var(--my, 50%), rgba(25,25,112,0.2), transparent 50%);
+      background: radial-gradient(550px circle at var(--mx, 50%) var(--my, 50%), rgba(59,111,255,0.2), transparent 50%);
       opacity: 0;
       transition: opacity 0.4s;
       pointer-events: none;
@@ -1406,7 +1416,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(120,130,255,0.9);
+      color: rgba(140,170,255,0.9);
       margin-bottom: 16px;
     }
 
@@ -1621,7 +1631,7 @@
     .bt.s6 { grid-column: span 6; }
 
     .bt.hot {
-      background: linear-gradient(135deg, rgba(25,25,112,0.13) 0%, rgba(25,25,112,0.04) 60%);
+      background: linear-gradient(135deg, rgba(59,111,255,0.13) 0%, rgba(59,111,255,0.04) 60%);
       border-color: var(--border-hover);
     }
 
@@ -1967,7 +1977,7 @@
     .contact-email-btn:hover {
       border-color: var(--border-hover);
       transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(25,25,112,0.1);
+      box-shadow: 0 14px 40px rgba(59,111,255,0.1);
     }
 
     .copy-icon { font-size: 14px; opacity: 0.45; transition: opacity 0.2s; }
@@ -2148,7 +2158,7 @@
 
     /* Nav logo gradient */
     .nav-logo {
-      background: linear-gradient(135deg, var(--text-1) 0%, rgba(120,130,255,0.7) 100%);
+      background: linear-gradient(135deg, var(--text-1) 0%, rgba(140,170,255,0.7) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -2165,10 +2175,10 @@
 
     /* Hero orb — more vivid */
     .orb-a {
-      background: radial-gradient(circle, rgba(65,105,225,0.12) 0%, transparent 70%) !important;
+      background: radial-gradient(circle, rgba(99,140,255,0.12) 0%, transparent 70%) !important;
     }
     .orb-b {
-      background: radial-gradient(circle, rgba(65,105,225,0.08) 0%, transparent 70%) !important;
+      background: radial-gradient(circle, rgba(99,140,255,0.08) 0%, transparent 70%) !important;
     }
 
     /* Marquee items more visible */
@@ -2188,7 +2198,7 @@
       letter-spacing: -0.04em !important;
     }
     .contact-heading span {
-      background: linear-gradient(135deg, rgba(120,130,255,1) 0%, rgba(65,105,225,0.8) 100%);
+      background: linear-gradient(135deg, rgba(140,170,255,1) 0%, rgba(99,140,255,0.8) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -2218,7 +2228,7 @@
       font-size: 10px !important;
       font-weight: 600 !important;
       letter-spacing: 0.12em !important;
-      color: rgba(120,130,255,0.5) !important;
+      color: rgba(140,170,255,0.5) !important;
     }
 
     /* Project tag style update */
@@ -2233,7 +2243,7 @@
     .wow-divider {
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(65,105,225,0.4) 30%, rgba(120,130,255,0.2) 70%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, rgba(99,140,255,0.4) 30%, rgba(140,170,255,0.2) 70%, transparent 100%);
       position: relative;
       overflow: hidden;
     }
@@ -2241,7 +2251,7 @@
       content: '';
       position: absolute; top: 0; left: -100%;
       width: 60%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(120,130,255,0.6), transparent);
+      background: linear-gradient(90deg, transparent, rgba(140,170,255,0.6), transparent);
       animation: dividerSweep 4s ease-in-out infinite 2s;
     }
     @keyframes dividerSweep {
@@ -2308,7 +2318,7 @@
     .grad-border {
       position: absolute; inset: -1px;
       border-radius: calc(var(--r) + 1px);
-      background: conic-gradient(from var(--ba), var(--accent) 0%, rgba(0,212,170,0.4) 20%, transparent 40%, var(--accent) 100%);
+      background: conic-gradient(from var(--ba), var(--accent) 0%, rgba(99,140,255,0.4) 20%, transparent 40%, var(--accent) 100%);
       z-index: -1; opacity: 0;
       transition: opacity 0.4s;
       animation: rotateBorder 3s linear infinite;
@@ -2340,7 +2350,7 @@
       transform-origin: top;
       transform: scaleY(0);
       transition: transform 1.6s var(--expo);
-      background: linear-gradient(to bottom, var(--accent), rgba(25,25,112,0.15)) !important;
+      background: linear-gradient(to bottom, var(--accent), rgba(59,111,255,0.15)) !important;
     }
     .timeline.line-on::before { transform: scaleY(1); }
 
@@ -2380,8 +2390,8 @@
       animation: accentGlow 3s ease-in-out infinite;
     }
     @keyframes accentGlow {
-      0%,100% { filter: drop-shadow(0 0 6px rgba(25,25,112,0.5)); }
-      50%      { filter: drop-shadow(0 0 22px rgba(25,25,112,1)); }
+      0%,100% { filter: drop-shadow(0 0 6px rgba(59,111,255,0.5)); }
+      50%      { filter: drop-shadow(0 0 22px rgba(59,111,255,1)); }
     }
 
     /* Scroll to top button */
@@ -2397,7 +2407,7 @@
       z-index: 90;
     }
     #scrollTop.show { opacity: 1; transform: translateY(0); }
-    #scrollTop:hover { border-color: var(--border-hover); color: var(--accent); box-shadow: 0 8px 24px rgba(25,25,112,0.2); }
+    #scrollTop:hover { border-color: var(--border-hover); color: var(--accent); box-shadow: 0 8px 24px rgba(59,111,255,0.2); }
 
     /* Marquee enhanced fade edges */
     .marquee { position: relative; }
@@ -2410,7 +2420,7 @@
     /* Cert card top line reveal */
     .cert-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, var(--accent), rgba(0,212,170,0.5));
+      background: linear-gradient(90deg, var(--accent), rgba(99,140,255,0.5));
       transform: scaleX(0); transform-origin: left;
       transition: transform 0.5s var(--expo);
     }
@@ -2419,16 +2429,16 @@
     /* Gear item shimmer */
     .gear-item::after {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(25,25,112,0.12), transparent 55%);
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(59,111,255,0.12), transparent 55%);
       opacity: 0; transition: opacity 0.4s; pointer-events: none;
     }
     .gear-item:hover::after { opacity: 1; }
 
     /* Experience timeline dot ring pulse */
     @keyframes dotRing {
-      0%   { box-shadow: 0 0 0 0 rgba(25,25,112,0.4); }
-      70%  { box-shadow: 0 0 0 8px rgba(25,25,112,0); }
-      100% { box-shadow: 0 0 0 0 rgba(25,25,112,0); }
+      0%   { box-shadow: 0 0 0 0 rgba(59,111,255,0.4); }
+      70%  { box-shadow: 0 0 0 8px rgba(59,111,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(59,111,255,0); }
     }
     .tl-item:hover .tl-dot { animation: dotRing 1.2s ease infinite; }
 
@@ -2451,7 +2461,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(25,25,112,0.15), transparent 55%);
+      background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(59,111,255,0.15), transparent 55%);
       opacity: 0;
       transition: opacity 0.4s;
       pointer-events: none;
@@ -2498,8 +2508,8 @@
       animation: geoAmbient 2.6s ease infinite;
     }
     @keyframes geoAmbient {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(65,105,225,0.35); }
-      50%      { box-shadow: 0 0 0 6px rgba(65,105,225,0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(99,140,255,0.35); }
+      50%      { box-shadow: 0 0 0 6px rgba(99,140,255,0); }
     }
     .geo-dot::after {
       content: '';
@@ -2579,8 +2589,8 @@
       transition: border-color 0.3s, transform 0.3s var(--expo), background 0.3s;
     }
     .pl-step:hover {
-      border-color: rgba(25,25,112,0.4);
-      background: rgba(25,25,112,0.06);
+      border-color: rgba(59,111,255,0.4);
+      background: rgba(59,111,255,0.06);
       transform: translateY(-4px);
     }
     .pl-num {
@@ -2619,6 +2629,234 @@
     }
     @media (max-width: 520px) {
       .pl-step { flex: 1 1 100%; }
+    }
+
+    /* =====================================================
+       CINEMATIC GLASS LAYER  (electric-blue reinvention)
+       ===================================================== */
+
+    /* Atmospheric depth, animated electric aurora + film grain */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -20%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(48% 42% at 80% -2%, rgba(59,111,255,0.30), transparent 58%),
+        radial-gradient(42% 38% at 4% 102%, rgba(106,147,255,0.20), transparent 55%),
+        radial-gradient(38% 34% at 52% 48%, rgba(40,70,180,0.18), transparent 66%);
+      filter: blur(20px);
+      animation: auroraDrift 22s ease-in-out infinite alternate;
+    }
+    @keyframes auroraDrift {
+      0%   { transform: translate3d(-2%, -1%, 0) scale(1);    opacity: 0.9; }
+      50%  { transform: translate3d(3%, 2%, 0)  scale(1.08);  opacity: 1; }
+      100% { transform: translate3d(-1%, 3%, 0) scale(1.03);  opacity: 0.85; }
+    }
+
+    /* Hero, vivid electric light pools + overhead beam */
+    .orb-a { background: radial-gradient(circle, rgba(59,111,255,0.28) 0%, transparent 68%) !important; filter: blur(60px) !important; }
+    .orb-b { background: radial-gradient(circle, rgba(106,147,255,0.20) 0%, transparent 70%) !important; filter: blur(80px) !important; }
+    .hero-grid { -webkit-mask-image: radial-gradient(ellipse 80% 80% at 42% 48%, black 25%, transparent 78%); mask-image: radial-gradient(ellipse 80% 80% at 42% 48%, black 25%, transparent 78%); opacity: 1.4; }
+    #hero::before {
+      content: ''; position: absolute; left: 50%; top: -32%;
+      width: 130%; height: 80%; transform: translateX(-50%);
+      background: conic-gradient(from 180deg at 50% 0%, transparent 42%, rgba(59,111,255,0.16) 50%, transparent 58%);
+      filter: blur(28px); mix-blend-mode: screen; pointer-events: none; z-index: 0;
+    }
+    #hero { border-bottom: 1px solid rgba(59,111,255,0.14); }
+
+    /* ===== Redesigned hero composition ===== */
+    .hero-inner { grid-template-columns: 1.04fr 0.96fr !important; gap: 72px !important; align-items: center; }
+    .hero-lead { position: relative; z-index: 2; }
+    .h-kicker {
+      font-family: var(--fm); font-size: 11px; letter-spacing: 0.30em;
+      text-transform: uppercase; color: var(--accent-2);
+      margin: 0 0 16px; opacity: 0; animation: up 0.6s var(--expo) 0.5s forwards;
+    }
+    .h-name { margin-bottom: 26px; }
+    /* Solid, bold headline (gradient text-fill was rendering faint); keep clip-path reveal */
+    .h-name .hw {
+      background: none !important;
+      -webkit-text-fill-color: var(--text-1) !important;
+      color: var(--text-1) !important;
+      text-shadow: 0 0 44px rgba(59,111,255,0.28);
+    }
+    .h-name .ao { color: var(--accent-2) !important; -webkit-text-fill-color: var(--accent-2) !important; }
+    .h-desc { max-width: 44ch; }
+
+    .hero-visual {
+      position: relative; z-index: 2;
+      width: min(420px, 100%); margin: 0 auto;
+      opacity: 0; animation: up 0.95s var(--expo) 0.85s forwards;
+    }
+    .hv-frame {
+      position: relative; width: 100%; aspect-ratio: 4 / 5;
+      border-radius: 22px; overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-lift);
+      background: var(--bg-1);
+    }
+    .hv-frame img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: contrast(1.06) saturate(1.05) brightness(0.96);
+      transition: transform 1.1s var(--expo);
+    }
+    .hv-frame:hover img { transform: scale(1.04); }
+    .hv-shade {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        linear-gradient(180deg, transparent 38%, rgba(6,7,10,0.82) 100%),
+        radial-gradient(120% 75% at 82% 0%, rgba(59,111,255,0.28), transparent 55%);
+    }
+    .hv-now {
+      position: absolute; left: 14px; bottom: 14px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--fm); font-size: 10px; letter-spacing: 0.06em; color: var(--text-1);
+      background: rgba(6,7,10,0.5);
+      -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border); border-radius: 100px; padding: 8px 14px;
+    }
+    .hv-now .geo-dot {
+      position: static; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); animation: pulse 2.2s ease infinite;
+    }
+    .hv-now .geo-dot::after { content: none; }
+    .hv-now .geo-clock { color: var(--accent-2); font-weight: 700; }
+    .hv-now .geo-sep { color: rgba(255,255,255,0.28); }
+    .hv-now-tz { color: var(--text-2); }
+
+    .hv-chip {
+      position: absolute; z-index: 3;
+      display: flex; flex-direction: column; gap: 3px; align-items: flex-start;
+      background: linear-gradient(160deg, var(--glass-2), var(--glass));
+      -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border); border-radius: 14px; padding: 12px 16px;
+      box-shadow: var(--shadow-glass);
+      animation: chipFloat 6s ease-in-out infinite;
+    }
+    .hv-chip b { font-family: var(--fi); font-weight: 800; font-size: 22px; color: var(--text-1); line-height: 1; }
+    .hv-chip span { font-family: var(--fm); font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-2); }
+    .hv-chip-1 { top: 5%; right: -7%; animation-delay: 0s; }
+    .hv-chip-2 { top: 46%; right: -12%; animation-delay: 1.3s; }
+    .hv-chip-3 { bottom: 7%; left: -8%; animation-delay: 2.5s; }
+    @keyframes chipFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+    @media (max-width: 880px) {
+      .hero-inner { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .hero-visual { order: -1; width: min(300px, 76vw); }
+      .hv-chip-1 { right: 0; }
+      .hv-chip-2 { right: -4%; }
+      .hv-chip-3 { left: 0; }
+      .h-desc { max-width: 100%; }
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.045;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 190px 190px;
+    }
+
+    /* Nav, always faintly glassy, fully frosted once stuck */
+    #nav { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+    #nav.stuck {
+      background: rgba(6,7,10,0.68);
+      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--glass-blur);
+      border-bottom-color: var(--glass-border);
+    }
+
+    /* Glass surfaces, every card/panel becomes frosted electric glass */
+    .hero-card,
+    .pc,
+    .bt,
+    .cert-card,
+    .vid-card,
+    .gear-item {
+      background: linear-gradient(160deg, var(--glass-2), var(--glass)) !important;
+      -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-glass);
+      transition: transform .55s var(--expo), box-shadow .55s var(--expo),
+                  border-color .4s ease, background .4s ease;
+    }
+    /* Featured case-study cards keep their electric tint, gain the glass frame */
+    .pc.w8[style*="border-top"] { background: linear-gradient(160deg, rgba(59,111,255,0.10), rgba(59,111,255,0.02)) !important; }
+
+    .pc:hover,
+    .bt:hover,
+    .cert-card:hover,
+    .gear-item:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lift);
+    }
+    .vid-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-lift); }
+
+    /* Timeline cards, glass-friendly transition without breaking the rail */
+    .tl-item { transition: transform .5s var(--expo), border-color .4s ease; }
+
+    /* Buttons, solid accent glows, ghost button turns to glass */
+    .btn-a {
+      box-shadow: 0 10px 34px -10px rgba(59,111,255,0.65);
+      transition: transform .12s ease, box-shadow .4s var(--expo), filter .3s ease;
+    }
+    .btn-a:hover { box-shadow: 0 16px 46px -10px rgba(59,111,255,0.85); filter: brightness(1.06); }
+    .btn-b {
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      transition: background .3s ease, border-color .3s ease, transform .12s ease;
+    }
+    .btn-b:hover { background: var(--glass-2); border-color: var(--border-hover); }
+
+    /* Section headings, subtle light-to-electric sheen */
+    .sec-heading, .contact-heading {
+      background: linear-gradient(180deg, var(--text-1) 0%, rgba(242,244,248,0.74) 70%, rgba(106,147,255,0.9) 130%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Accessibility, visible keyboard focus on the electric accent */
+    a:focus-visible,
+    button:focus-visible,
+    .magnetic:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 5px;
+    }
+
+    /* Touch / coarse pointers, kill the custom cursor, restore native */
+    @media (hover: none), (pointer: coarse) {
+      body { cursor: auto !important; }
+      #cur, #cdot { display: none !important; }
+    }
+
+    /* Reduced motion, show everything, stop the heavy stuff */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .h-name .hw, .h-badge, .h-sub, .h-desc, .h-ctas, .h-social,
+      .hero-card, [data-r], [data-stagger] {
+        opacity: 1 !important;
+        clip-path: none !important;
+        transform: none !important;
+      }
     }
 
   </style>
@@ -2688,26 +2926,20 @@
     <div class="orb-b"></div>
 
     <div class="hero-inner">
-      <div>
+      <div class="hero-lead">
         <div class="h-badge">
           <span class="badge-dot"></span>
           Available for new projects
         </div>
 
+        <p class="h-kicker">Video Editor &amp; Automation Specialist</p>
+
         <h1 class="h-name" id="heroName">
           <span class="hw">JUAN</span> <span class="hw">PAOLO</span><br><span class="hw">BLANCO</span>
         </h1>
 
-        <p class="h-sub">
-          Video Editor
-          <span class="sub-sep"></span>
-          Automation Specialist
-          <span class="sub-sep"></span>
-          Manila, PH
-        </p>
-
         <p class="h-desc">
-          <strong>7+ years</strong> building content that converts and systems that scale. From performance video ads to AI-driven automation pipelines, I work at the intersection of creative production and technical infrastructure.
+          <strong>10+ years</strong> building content that converts and systems that scale, from performance video ads to AI-driven automation pipelines.
         </p>
 
         <div class="h-ctas">
@@ -2740,64 +2972,22 @@
         </div>
       </div>
 
-      <!-- Hero right panel -->
-      <div class="hero-card">
-        <span class="hc-scan" aria-hidden="true"></span>
-
-        <!-- Ambient drifting particles -->
-        <span class="hc-particle" aria-hidden="true" style="left:8%;  width:2px;   height:2px;   background:rgba(120,130,255,0.55); animation-duration:11s; animation-delay:0s;"></span>
-        <span class="hc-particle" aria-hidden="true" style="left:22%; width:1.5px; height:1.5px; background:rgba(0,212,170,0.45);   animation-duration:14s; animation-delay:1.6s;"></span>
-        <span class="hc-particle" aria-hidden="true" style="left:38%; width:2.5px; height:2.5px; background:rgba(120,130,255,0.5);  animation-duration:9s;  animation-delay:3.2s;"></span>
-        <span class="hc-particle" aria-hidden="true" style="left:54%; width:1.5px; height:1.5px; background:rgba(0,212,170,0.4);   animation-duration:13s; animation-delay:0.8s;"></span>
-        <span class="hc-particle" aria-hidden="true" style="left:67%; width:2px;   height:2px;   background:rgba(120,130,255,0.5); animation-duration:16s; animation-delay:4.4s;"></span>
-        <span class="hc-particle" aria-hidden="true" style="left:79%; width:3px;   height:3px;   background:rgba(0,212,170,0.4);   animation-duration:10s; animation-delay:2.4s;"></span>
-        <span class="hc-particle" aria-hidden="true" style="left:91%; width:1.5px; height:1.5px; background:rgba(120,130,255,0.55); animation-duration:12s; animation-delay:5.6s;"></span>
-        <div class="hc-stats">
-          <div class="hc-stat">
-            <div class="hc-stat-n" data-count="7" data-suffix="+">7+</div>
-            <div class="hc-stat-l">Years</div>
-          </div>
-          <div class="hc-stat">
-            <div class="hc-stat-n" data-count="50" data-suffix="+">50+</div>
-            <div class="hc-stat-l">Projects</div>
-          </div>
-          <div class="hc-stat">
-            <div class="hc-stat-n" data-count="4" data-suffix="">4</div>
-            <div class="hc-stat-l">Industries</div>
+      <!-- Hero visual: framed portrait + floating stat chips -->
+      <div class="hero-visual">
+        <div class="hv-frame">
+          <img src="1pic.jpg" alt="Juan Paolo Blanco, video editor and automation specialist">
+          <div class="hv-shade"></div>
+          <div class="geo-widget hv-now" id="geoWidget" tabindex="0">
+            <span class="geo-dot"></span>
+            <span class="hv-now-city">Manila</span>
+            <span class="geo-sep">/</span>
+            <span class="geo-clock" id="geoClock">--:--:--</span>
+            <span class="hv-now-tz">GMT+8</span>
           </div>
         </div>
-
-        <div class="hc-divider"></div>
-
-        <ul class="hc-list">
-          <li>Video Editing &amp; Post Production</li>
-          <li>AI Workflow Automation</li>
-          <li>Performance Ad Creatives</li>
-          <li>Cloud Infrastructure</li>
-        </ul>
-
-        <div class="hc-divider"></div>
-
-        <div class="hc-footer">
-          <div class="geo-widget" id="geoWidget" tabindex="0">
-            <div class="geo-row">
-              <div class="geo-left">
-                <span class="geo-dot"></span>
-                <span class="hc-location">Manila, Philippines</span>
-              </div>
-              <span class="geo-hint">Hover to explore</span>
-              <span class="hc-tz">UTC +8</span>
-            </div>
-            <div class="geo-detail-wrap">
-              <div class="geo-detail">
-                <span class="geo-coords">14.5995° N · 120.9842° E</span>
-                <span class="geo-sep">/</span>
-                <span class="geo-clock" id="geoClock">--:--:--</span>
-                <span class="geo-tz-full">GMT+8 local time</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="hv-chip hv-chip-1"><b>7+</b><span>Years</span></div>
+        <div class="hv-chip hv-chip-2"><b>50+</b><span>Projects</span></div>
+        <div class="hv-chip hv-chip-3"><b>4</b><span>Industries</span></div>
       </div>
     </div>
 
@@ -2847,7 +3037,7 @@
           automation <em class="eng">engineer</em>.
         </h2>
         <p class="am-body" id="amBody1">
-          With <strong>7+ years</strong> spanning digital marketing, agency production, and advertising infrastructure, I bring a rare combination of creative instinct and technical depth. I specialize in high-conversion video content for paid ads, social media, and executive personal brands, including agency work serving clients like <strong>Jason Harris</strong> (CEO of Mekanism), <strong>Ayman Al-Abdullah</strong> (former CEO of AppSumo), and <strong>Tai Lopez</strong>.
+          With <strong>10+ years</strong> spanning digital marketing, agency production, and advertising infrastructure, I bring a rare combination of creative instinct and technical depth. I specialize in high-conversion video content for paid ads, social media, and executive personal brands, including agency work serving clients like <strong>Jason Harris</strong> (CEO of Mekanism), <strong>Ayman Al-Abdullah</strong> (former CEO of AppSumo), and <strong>Tai Lopez</strong>.
         </p>
         <p class="am-body" id="amBody2" style="transition-delay: 0.28s;">
           Beyond the edit suite, I design <strong>AI automation workflows</strong> using n8n, Make, and Zapier, building systems that eliminate bottlenecks and give creative teams the space to focus on what actually moves the needle.
@@ -2855,7 +3045,7 @@
 
         <div class="am-stats" id="amStats">
           <div class="am-stat">
-            <div class="am-stat-num" data-count="7" data-suffix="+">7<sup>+</sup></div>
+            <div class="am-stat-num" data-count="10" data-suffix="+">10<sup>+</sup></div>
             <div class="am-stat-label">Years<br>Experience</div>
           </div>
           <div class="am-stat">
@@ -2903,7 +3093,7 @@
       <div class="proj-header" data-r>
         <div>
           <div class="sec-label">How I Work</div>
-          <h2 class="sec-heading">Brief to delivery — every time.</h2>
+          <h2 class="sec-heading">Brief to delivery, every time.</h2>
         </div>
       </div>
 
@@ -2919,7 +3109,7 @@
         <div class="pl-step">
           <div class="pl-num">02 · PLAN</div>
           <div class="pl-name">Map It Out</div>
-          <div class="pl-desc">Storyboard the edit or sketch the workflow — decide the shape before building it.</div>
+          <div class="pl-desc">Storyboard the edit or sketch the workflow, then lock the shape before building it.</div>
         </div>
         <div class="pl-arrow">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2927,7 +3117,7 @@
         <div class="pl-step">
           <div class="pl-num">03 · BUILD</div>
           <div class="pl-name">Produce</div>
-          <div class="pl-desc">Cut the footage or wire the automation — hands-on production with fast iteration loops.</div>
+          <div class="pl-desc">Cut the footage or wire the automation, hands-on, with fast iteration loops.</div>
         </div>
         <div class="pl-arrow">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2935,7 +3125,7 @@
         <div class="pl-step">
           <div class="pl-num">04 · REVIEW</div>
           <div class="pl-name">Stress-Test</div>
-          <div class="pl-desc">Check it against the brief. Cut what doesn't earn its place — twice if needed.</div>
+          <div class="pl-desc">Check it against the brief. Cut what doesn't earn its place, twice if needed.</div>
         </div>
         <div class="pl-arrow">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2943,7 +3133,7 @@
         <div class="pl-step">
           <div class="pl-num">05 · SHIP</div>
           <div class="pl-name">Deliver</div>
-          <div class="pl-desc">Final cuts handed off or systems pushed live — on schedule, production-ready.</div>
+          <div class="pl-desc">Final cuts handed off or systems pushed live, on schedule and production-ready.</div>
         </div>
         <div class="pl-arrow">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2973,14 +3163,14 @@
       <div class="proj-grid" data-stagger>
 
         <!-- Featured Case Study -->
-        <div class="pc w8" data-r style="border-top: 2px solid var(--accent); background: linear-gradient(135deg, rgba(25,25,112,0.08) 0%, rgba(25,25,112,0.02) 100%);">
+        <div class="pc w8" data-r style="border-top: 2px solid var(--accent); background: linear-gradient(135deg, rgba(59,111,255,0.08) 0%, rgba(59,111,255,0.02) 100%);">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
             <span class="pc-num" style="color:var(--accent);">Featured Case Study</span>
             <span style="font-family:var(--fm); font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-3); background:var(--bg-2); border:1px solid var(--border); padding:4px 10px; border-radius:4px;">Live System</span>
           </div>
           <div class="pc-icon">🤖</div>
           <div class="pc-title" style="font-size:20px;">AI E-Commerce Operations System</div>
-          <p class="pc-desc">7 interconnected AI agents that automate the full operations stack of an e-commerce business — ad monitoring, support triage, refund detection, weekly revenue reports, and a Slack chatbot that answers business questions in real time using live Shopify data.</p>
+          <p class="pc-desc">7 interconnected AI agents that automate the full operations stack of an e-commerce business: ad monitoring, support triage, refund detection, weekly revenue reports, and a Slack chatbot that answers business questions in real time using live Shopify data.</p>
           <div class="pc-tags" style="margin-bottom:22px;">
             <span class="pc-tag">n8n</span>
             <span class="pc-tag">LLaMA 3.3</span>
@@ -3014,14 +3204,14 @@
         </div>
 
         <!-- Featured Case Study — CareFlow AI -->
-        <div class="pc w8" data-r style="border-top: 2px solid var(--accent); background: linear-gradient(135deg, rgba(25,25,112,0.08) 0%, rgba(25,25,112,0.02) 100%);">
+        <div class="pc w8" data-r style="border-top: 2px solid var(--accent); background: linear-gradient(135deg, rgba(59,111,255,0.08) 0%, rgba(59,111,255,0.02) 100%);">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
             <span class="pc-num" style="color:var(--accent);">Featured Case Study</span>
             <span style="font-family:var(--fm); font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-3); background:var(--bg-2); border:1px solid var(--border); padding:4px 10px; border-radius:4px;">Live System</span>
           </div>
           <div class="pc-icon">🏥</div>
-          <div class="pc-title" style="font-size:20px;">CareFlow AI — Homecare Operations System</div>
-          <p class="pc-desc">8 interconnected automation pipelines that run a 40-caregiver, 65-client homecare agency end-to-end — intake, AI smart scheduling, Telegram clock-in with EVV compliance, AI-structured care notes, family communication, and a weekly AI-written operations report. Built on a 100% free stack.</p>
+          <div class="pc-title" style="font-size:20px;">CareFlow AI: Homecare Operations System</div>
+          <p class="pc-desc">8 interconnected automation pipelines that run a 40-caregiver, 65-client homecare agency end-to-end: intake, AI smart scheduling, Telegram clock-in with EVV compliance, AI-structured care notes, family communication, and a weekly AI-written operations report. Built on a 100% free stack.</p>
           <div class="pc-tags" style="margin-bottom:22px;">
             <span class="pc-tag">n8n</span>
             <span class="pc-tag">LLaMA 3.3</span>
@@ -3592,7 +3782,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-name">Juan Paolo Blanco</div>
-      <div class="footer-copy">Manila, Philippines &nbsp;/&nbsp; 2025</div>
+      <div class="footer-copy">Manila, Philippines &nbsp;/&nbsp; 2026</div>
       <div class="footer-links">
         <a href="#hero">Top</a>
         <a href="#projects">Work</a>
@@ -3639,16 +3829,22 @@
     setTimeout(() => { if (!loadFired) setPct(50); }, 400);
     setTimeout(() => { if (!loadFired) setPct(75); }, 800);
 
+    function dismissLoader() {
+      if (!document.body.classList.contains('is-loading')) return;
+      loader.classList.add('done');
+      document.body.classList.remove('is-loading');
+      runScramble();
+    }
+
     window.addEventListener('load', () => {
       loadFired = true;
       setPct(100);
       // Wait for bar CSS transition (1s) + 600ms hold at 100% before dismiss
-      setTimeout(() => {
-        loader.classList.add('done');
-        document.body.classList.remove('is-loading');
-        runScramble();
-      }, 1600);
+      setTimeout(dismissLoader, 1600);
     });
+
+    // Failsafe: never trap the visitor behind the loader if a video/asset hangs
+    setTimeout(() => { setPct(100); dismissLoader(); }, 4000);
 
     // ========== Custom Cursor ==========
     const cur = document.getElementById('cur');
@@ -3859,9 +4055,7 @@
     }
 
     function runScramble() {
-      const nameEl = document.getElementById('heroName');
-      const s = new Scramble(nameEl);
-      s.run('JUAN PAOLO\nBLANCO');
+      /* Scramble disabled: the per-word clip-path reveal handles the entrance cleanly. */
     }
 
     // Mobile browsers can restore this page from the back-forward cache (bfcache)
@@ -4154,7 +4348,7 @@
           bottom:-10px;
           width:${size}px;
           height:${size}px;
-          background:${isGreen ? 'rgba(0,212,170,0.45)' : 'rgba(65,105,225,0.55)'};
+          background:${isGreen ? 'rgba(99,140,255,0.45)' : 'rgba(99,140,255,0.55)'};
           animation-duration:${dur}s;
           animation-delay:${delay}s;
         `;

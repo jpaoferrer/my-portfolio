@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Mortgage Aggregator Ops — Leverage & ROI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0f; --surface: #111118; --surface2: #1a1a24; --border: #2a2a3a;
+    --accent: #6c63ff; --accent2: #00d4aa; --text: #e8e8f0; --muted: #888899;
+    --card-bg: #13131e; --expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; padding-top: 52px; }
+
+  #pgbar { position: fixed; top: 52px; left: 0; width: 0%; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); z-index: 200; transition: width 0.08s linear; pointer-events: none; }
+
+  .back-nav { position: fixed; top: 0; left: 0; right: 0; height: 52px; background: rgba(10,10,15,0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; padding: 0 40px; z-index: 100; }
+  .back-nav-inner { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .back-link { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .back-link:hover { color: #fff; }
+  .back-nav-brand { font-size: 13px; font-weight: 800; letter-spacing: -0.02em; color: rgba(255,255,255,0.25); }
+  .back-nav-brand span { color: var(--accent); }
+
+  [data-r] { opacity: 0; transform: translateY(36px); transition: opacity 0.9s var(--expo), transform 0.9s var(--expo); }
+  [data-r].on { opacity: 1; transform: none; }
+  [data-r][data-d="1"] { transition-delay: 0.08s; } [data-r][data-d="2"] { transition-delay: 0.16s; }
+  [data-r][data-d="3"] { transition-delay: 0.24s; } [data-r][data-d="4"] { transition-delay: 0.32s; }
+  [data-r][data-d="5"] { transition-delay: 0.40s; } [data-r][data-d="6"] { transition-delay: 0.48s; }
+
+  .hero { text-align: center; padding: 80px 40px 60px; position: relative; overflow: hidden; width: 1200px; margin: 0 auto; }
+  .hero-grid { position: absolute; inset: -10%; background-image: radial-gradient(circle, rgba(108,99,255,0.12) 1px, transparent 1px); background-size: 40px 40px; animation: gridDrift 30s linear infinite; pointer-events: none; z-index: 0; -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%); mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%); }
+  @keyframes gridDrift { from { transform: translate(0,0); } to { transform: translate(40px, 40px); } }
+  .orb-a { position: absolute; top: -100px; left: 50%; width: 700px; height: 400px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(108,99,255,0.12) 0%, transparent 65%); filter: blur(40px); pointer-events: none; z-index: 0; animation: orbBreatheCenter 8s ease-in-out infinite; }
+  .orb-b { position: absolute; bottom: -80px; left: 10%; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,170,0.07) 0%, transparent 70%); filter: blur(60px); pointer-events: none; z-index: 0; animation: orbBreathe 10s ease-in-out 2s infinite; }
+  .orb-c { position: absolute; bottom: -60px; right: 5%; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(108,99,255,0.08) 0%, transparent 70%); filter: blur(50px); pointer-events: none; z-index: 0; animation: orbBreathe 7s ease-in-out 1s infinite; }
+  @keyframes orbBreathe { 0%,100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+  @keyframes orbBreatheCenter { 0%,100% { opacity: 0.6; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.08); } }
+
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,212,170,0.12); border: 1px solid rgba(0,212,170,0.3); color: #6ee7c7; font-size: 12px; font-weight: 600; padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; letter-spacing: 0.5px; text-transform: uppercase; position: relative; z-index: 1; opacity: 0; transform: translateY(-16px); animation: badgeIn 0.7s var(--expo) 0.2s forwards; }
+  @keyframes badgeIn { to { opacity: 1; transform: translateY(0); } }
+  .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); animation: dotPulse 2s infinite; }
+  @keyframes dotPulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,212,170,0.5)} 50%{opacity:0.5;box-shadow:0 0 0 6px rgba(0,212,170,0)} }
+
+  .hero h1 { font-size: 52px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; position: relative; z-index: 1; overflow: hidden; }
+  .hero-word { display: inline-block; opacity: 0; transform: translateY(50px); background: linear-gradient(135deg, #fff 0%, #a09fff 50%, #00d4aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; background-size: 200% 200%; animation: wordUp 0.75s var(--expo) forwards, shimmerGrad 4s ease infinite 1s; }
+  @keyframes wordUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes shimmerGrad { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  .hero p { font-size: 17px; color: var(--muted); max-width: 640px; margin: 0 auto 32px; font-weight: 400; line-height: 1.7; position: relative; z-index: 1; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s var(--expo) 0.9s forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .hero-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .tag { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-size: 13px; font-weight: 500; padding: 5px 14px; border-radius: 6px; opacity: 0; transform: translateY(12px); animation: fadeUp 0.5s var(--expo) forwards; }
+  .tag.accent { border-color: rgba(108,99,255,0.4); color: #a09fff; background: rgba(108,99,255,0.08); }
+  .tag.green { border-color: rgba(0,212,170,0.4); color: #00d4aa; background: rgba(0,212,170,0.08); }
+
+  .page-body { width: 1200px; margin: 0 auto; padding: 0 40px 80px; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 50px 0; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .section-title { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .section-sub { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 50px; }
+  .stat { background: var(--card-bg); padding: 28px 24px; text-align: center; position: relative; overflow: hidden; }
+  .stat::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(0,212,170,0.08), transparent 60%); opacity: 0; transition: opacity 0.3s; }
+  .stat:hover::after { opacity: 1; }
+  .stat-num { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; background: linear-gradient(135deg, #fff, #6ee7c7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+  /* TASKS ELIMINATED */
+  .tasks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 50px; }
+  .task { display: flex; align-items: flex-start; gap: 14px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; transition: border-color 0.3s, transform 0.4s var(--expo); }
+  .task:hover { border-color: rgba(0,212,170,0.3); transform: translateY(-3px); }
+  .task-x { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: rgba(0,212,170,0.12); border: 1px solid rgba(0,212,170,0.35); color: #6ee7c7; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; margin-top: 2px; }
+  .task-body h4 { font-size: 14.5px; font-weight: 700; margin-bottom: 3px; }
+  .task-body p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .task-body .was { color: #fca5a5; text-decoration: line-through; opacity: 0.7; }
+
+  /* CARDS GRID (leverage / benefits) */
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 50px; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 24px; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.4s var(--expo); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .card:hover { border-color: rgba(108,99,255,0.35); transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
+  .card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
+  .card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .card .big { font-size: 22px; font-weight: 900; color: #6ee7c7; margin: 6px 0 2px; letter-spacing: -0.5px; }
+  .card ul { margin: 10px 0 0; padding-left: 18px; }
+  .card li { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
+  /* PRICING / WORTH TABLE */
+  .ba-table { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 50px; }
+  .ba-row { display: grid; grid-template-columns: 1.4fr 1fr 1.4fr; border-bottom: 1px solid var(--border); }
+  .ba-row:last-child { border-bottom: none; }
+  .ba-row.head { background: var(--surface2); }
+  .ba-cell { padding: 16px 20px; font-size: 13.5px; line-height: 1.5; }
+  .ba-cell.metric { font-weight: 600; color: var(--text); }
+  .ba-cell.mid { color: #a09fff; font-weight: 700; }
+  .ba-cell.note { color: var(--muted); }
+  .ba-row.head .ba-cell { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+  /* CALLOUT */
+  .callout { background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(0,212,170,0.07)); border: 1px solid rgba(108,99,255,0.25); border-radius: 16px; padding: 32px 36px; margin-bottom: 50px; position: relative; overflow: hidden; }
+  .callout h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+  .callout p { font-size: 14.5px; color: var(--muted); line-height: 1.7; }
+  .callout strong { color: #6ee7c7; }
+
+  /* NEXT STEPS */
+  .steps { counter-reset: s; display: grid; gap: 12px; margin-bottom: 50px; }
+  .step { display: flex; gap: 16px; align-items: flex-start; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .step::before { counter-increment: s; content: counter(s); flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px; background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.35); color: #a09fff; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .step h4 { font-size: 14.5px; font-weight: 700; margin-bottom: 3px; }
+  .step p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+  .footer { display: flex; align-items: center; justify-content: space-between; padding-top: 30px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 20px; }
+  .footer-left { font-size: 13px; color: var(--muted); }
+  .footer-left strong { color: var(--text); font-weight: 600; }
+
+  .particle { position: fixed; width: 3px; height: 3px; border-radius: 50%; background: var(--accent2); opacity: 0; pointer-events: none; animation: floatParticle linear infinite; }
+  @keyframes floatParticle { 0% { opacity: 0; transform: translateY(0) scale(0); } 10% { opacity: 0.6; transform: translateY(-20px) scale(1); } 90% { opacity: 0.2; } 100% { opacity: 0; transform: translateY(-120px) scale(0.3); } }
+
+  @media (max-width: 1240px) { .hero, .page-body { width: 100%; } .grid3 { grid-template-columns: 1fr; } .tasks { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) { .hero h1 { font-size: 34px; } .stats { grid-template-columns: repeat(2,1fr); } .ba-row { grid-template-columns: 1fr; } }
+
+  @page { size: 1280px 1810px; margin: 0; }
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    html, body { background: var(--bg) !important; padding-top: 0 !important; width: 1280px !important; margin: 0 !important; }
+    .back-nav, #pgbar, .particle { display: none !important; }
+    .hero { width: 1280px !important; margin: 0 !important; padding: 56px 40px 50px !important; }
+    .page-body { width: 1280px !important; margin: 0 !important; padding: 0 40px 60px !important; }
+    [data-r] { opacity: 1 !important; transform: none !important; }
+    .hero-word, .badge, .hero p, .tag { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .tasks, .grid3, .card, .task, .stat, .stats, .ba-table, .ba-row, .callout, .step, .steps { break-inside: avoid; page-break-inside: avoid; }
+    .section-title, .section-label { break-after: avoid; page-break-after: avoid; }
+    .divider { margin: 34px 0 !important; }
+  }
+</style>
+</head>
+<body>
+<div id="pgbar"></div>
+<nav class="back-nav">
+  <div class="back-nav-inner">
+    <a href="index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="back-nav-brand">JP<span>.</span></div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="orb-a"></div><div class="orb-b"></div><div class="orb-c"></div>
+  <div class="badge"><span class="badge-dot"></span> Leverage &amp; ROI</div>
+  <h1>
+    <span class="hero-word" style="animation-delay:0.35s">Turning&nbsp;the&nbsp;System</span><br>
+    <span class="hero-word" style="animation-delay:0.50s">Into&nbsp;</span><span class="hero-word" style="animation-delay:0.64s">Real&nbsp;Value</span>
+  </h1>
+  <p>The AI Mortgage Aggregator Ops System doesn't just automate work — it eliminates entire manual jobs, protects revenue, and can be packaged and sold as a productised service. Here's what it removes, what it's worth, and how to leverage it.</p>
+  <div class="hero-tags">
+    <span class="tag green" style="animation-delay:1.0s">8 Tasks Eliminated</span>
+    <span class="tag green" style="animation-delay:1.08s">~15 hrs/week Saved</span>
+    <span class="tag accent" style="animation-delay:1.16s">~$20/mo to Run</span>
+    <span class="tag accent" style="animation-delay:1.24s">5-Figure Annual Value</span>
+  </div>
+</div>
+
+<div class="page-body">
+<div class="divider" data-r></div>
+
+<!-- STATS -->
+<div class="stats" data-r>
+  <div class="stat"><div class="stat-num" data-count="8">8</div><div class="stat-label">Manual Tasks Eliminated</div></div>
+  <div class="stat"><div class="stat-num" data-count="15" data-suffix="+">15+</div><div class="stat-label">Hours Saved / Week</div></div>
+  <div class="stat"><div class="stat-num">$27K</div><div class="stat-label">Annual Labour Saved</div></div>
+  <div class="stat"><div class="stat-num">~$20</div><div class="stat-label">Monthly Run Cost</div></div>
+</div>
+
+<!-- TASKS ELIMINATED -->
+<div data-r><div class="section-label">What It Removes</div></div>
+<div class="section-title" data-r data-d="1">Manual Tasks Eliminated</div>
+<div class="section-sub" data-r data-d="2">Each of these used to be a human job done by hand in spreadsheets, email and shared folders. Now they happen automatically — or never need doing at all.</div>
+
+<div class="tasks" data-r data-d="2">
+  <div class="task"><div class="task-x">✓</div><div class="task-body"><h4>Broker onboarding admin</h4><p><span class="was">Manually create records, folders &amp; checklists</span> → auto-provisioned in seconds with welcome email.</p></div></div>
+  <div class="task"><div class="task-x">✓</div><div class="task-body"><h4>Lead data entry</h4><p><span class="was">Typing every enquiry into a spreadsheet</span> → captured &amp; structured automatically from the form.</p></div></div>
+  <div class="task"><div class="task-x">✓</div><div class="task-body"><h4>Deciding who gets the lead</h4><p><span class="was">Manual, gut-feel assignment</span> → AI matches by specialty, state &amp; live workload in under 60s.</p></div></div>
+  <div class="task"><div class="task-x">✓</div><div class="task-body"><h4>Chasing brokers to follow up</h4><p><span class="was">Remembering and nudging by hand</span> → enforced reminders + calendar events, nothing slips.</p></div></div>
+  <div class="task"><div class="task-x">✓</div><div class="task-body"><h4>Tracking the loan pipeline</h4><p><span class="was">Updating a status spreadsheet</span> → every stage timestamped, time-in-stage measured automatically.</p></div></div>
+  <div class="task"><div class="task-x">✓</div><div class="task-body"><h4>Hunting for stalled files</h4><p><span class="was">Manually scanning for stuck deals</span> → daily sweep flags &amp; escalates bottlenecks on its own.</p></div></div>
+  <div class="task"><div class="task-x">✓</div><div class="task-body"><h4>Checking compliance files</h4><p><span class="was">Reading every file for missing docs</span> → AI pre-screens the 6 mandatory artefacts &amp; writes the summary.</p></div></div>
+  <div class="task"><div class="task-x">✓</div><div class="task-body"><h4>Building management reports</h4><p><span class="was">Compiling weekly spreadsheets</span> → live dashboards + an automatic daily digest.</p></div></div>
+</div>
+
+<!-- BENEFITS -->
+<div data-r><div class="section-label">The Payoff</div></div>
+<div class="section-title" data-r data-d="1">The Benefits</div>
+<div class="section-sub" data-r data-d="2">What the business actually gains.</div>
+
+<div class="grid3">
+  <div class="card" data-r data-d="1"><span class="card-icon">⏱️</span><h3>Time given back</h3><div class="big">~15 hrs/week</div><p>Admin and coordination drop ~60–70%. The team spends its hours on clients and settlements, not data entry.</p></div>
+  <div class="card" data-r data-d="2"><span class="card-icon">⚡</span><h3>Revenue protected</h3><div class="big">No lost leads</div><p>Every lead is scored, routed and followed up. Recovering even one settled loan a month is thousands in commission.</p></div>
+  <div class="card" data-r data-d="3"><span class="card-icon">🛡️</span><h3>Risk reduced</h3><div class="big">Audit-ready</div><p>AI compliance pre-screening on every file with an explainable record — fewer gaps, less ASIC exposure.</p></div>
+  <div class="card" data-r data-d="4"><span class="card-icon">👁️</span><h3>Full visibility</h3><div class="big">Real-time</div><p>The owner sees broker performance, the funnel, pipeline health and compliance — without touching a spreadsheet.</p></div>
+  <div class="card" data-r data-d="5"><span class="card-icon">⚖️</span><h3>Fair &amp; consistent</h3><div class="big">Rules-based</div><p>Lead distribution balances across brokers automatically — no bias, no favouritism, no dropped enquiries.</p></div>
+  <div class="card" data-r data-d="6"><span class="card-icon">💸</span><h3>Tiny running cost</h3><div class="big">~$20/mo</div><p>Enterprise-grade operations on free &amp; low-cost tools — and it scales without a rebuild.</p></div>
+</div>
+
+<!-- HOW TO LEVERAGE -->
+<div data-r><div class="section-label">How To Leverage It</div></div>
+<div class="section-title" data-r data-d="1">Three Ways To Turn It Into Income</div>
+<div class="section-sub" data-r data-d="2">This is a sellable product, not just an internal tool.</div>
+
+<div class="grid3">
+  <div class="card" data-r data-d="1"><span class="card-icon">🏆</span><h3>1 · Credibility asset</h3><p>A live, working system is proof you ship enterprise automation — the thing that converts discovery calls.</p><ul><li>Record a 3–4 min demo video</li><li>Feature it on your portfolio</li><li>Show range: finance, health, retail</li></ul></div>
+  <div class="card" data-r data-d="2"><span class="card-icon">📦</span><h3>2 · Productised service</h3><p>Install it for Australian aggregators &amp; brokerages. A repeatable build with recurring revenue.</p><ul><li>Build fee: AUD $4k–$10k</li><li>Retainer: AUD $400–$1,500/mo</li><li>Or per-broker: $50–100/broker/mo</li></ul></div>
+  <div class="card" data-r data-d="3"><span class="card-icon">🔁</span><h3>3 · Reusable IP</h3><p>The intake → classify → route → track → report spine is niche-agnostic. Build once, re-skin many.</p><ul><li>Insurance &amp; real estate</li><li>Recruitment &amp; legal intake</li><li>Financial advice firms</li></ul></div>
+</div>
+
+<!-- WORTH TABLE -->
+<div data-r><div class="section-label">What It's Worth</div></div>
+<div class="section-title" data-r data-d="1">The Economics</div>
+<div class="section-sub" data-r data-d="2">Tiny cost in, five-figure value out — that asymmetry is what makes it sellable.</div>
+
+<div class="ba-table" data-r data-d="2">
+  <div class="ba-row head"><div class="ba-cell">Lever</div><div class="ba-cell">Figure</div><div class="ba-cell">What it means</div></div>
+  <div class="ba-row"><div class="ba-cell metric">Cost to run</div><div class="ba-cell mid">~$15–25 / mo</div><div class="ba-cell note">n8n + Groq AI + free tiers (Airtable, Tally, Gmail, Discord, Drive)</div></div>
+  <div class="ba-row"><div class="ba-cell metric">Labour saved</div><div class="ba-cell mid">~$27,000 / yr</div><div class="ba-cell note">~15 hrs/week of admin at a modest ops wage</div></div>
+  <div class="ba-row"><div class="ba-cell metric">Revenue recovered</div><div class="ba-cell mid">$3k–$6k each</div><div class="ba-cell note">Per settled loan saved from a forgotten/cold lead</div></div>
+  <div class="ba-row"><div class="ba-cell metric">Build fee (to client)</div><div class="ba-cell mid">AUD $5k–$8k</div><div class="ba-cell note">One-off install &amp; customisation for this scope</div></div>
+  <div class="ba-row"><div class="ba-cell metric">Monthly retainer</div><div class="ba-cell mid">AUD $400–$1,500</div><div class="ba-cell note">Support, tweaks, new automations — compounding income</div></div>
+  <div class="ba-row"><div class="ba-cell metric">Practice potential</div><div class="ba-cell mid">$50k–$150k / yr</div><div class="ba-cell note">3–8 clients on retainers; low marginal cost per install</div></div>
+</div>
+
+<div class="callout" data-r>
+  <h3>The one-line case</h3>
+  <p>A client paying <strong>~$6k to build + ~$800/month</strong> gets a system that saves <strong>~$27k/year in labour</strong>, recovers lost commissions, and keeps them audit-ready — for a hard cost of <strong>~$20/month</strong>. That return is why it sells itself.</p>
+</div>
+
+<!-- NEXT STEPS -->
+<div data-r><div class="section-label">Make It Pay</div></div>
+<div class="section-title" data-r data-d="1">Next Moves</div>
+<div class="section-sub" data-r data-d="2">Highest-leverage actions first.</div>
+
+<div class="steps" data-r data-d="2">
+  <div class="step"><div><h4>Record a demo video</h4><p>Submit a lead → watch it scored, routed, emailed, posted to Discord, and tracked. A working demo closes better than slides.</p></div></div>
+  <div class="step"><div><h4>Publish the case study</h4><p>Put the system + outcomes on your portfolio next to CareFlow and the E-Commerce Ops system to show range.</p></div></div>
+  <div class="step"><div><h4>Create a one-page sales sheet</h4><p>Problem → system → outcomes → pricing tiers. Send it with the demo link to prospects.</p></div></div>
+  <div class="step"><div><h4>Run targeted outreach</h4><p>Australian aggregators &amp; brokerages on LinkedIn — lead with the case study and the time/revenue numbers.</p></div></div>
+</div>
+
+<div class="divider" data-r></div>
+<div class="footer" data-r>
+  <div class="footer-left">Built by <strong>Paolo Blanco</strong> · AI Automation Engineer<br><span style="font-size:12px">n8n · LLM Integration · Workflow Architecture · Airtable · Compliance Automation</span></div>
+</div>
+</div>
+
+<script>
+const pgbar = document.getElementById('pgbar');
+window.addEventListener('scroll', () => { const p = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100; pgbar.style.width = p + '%'; }, { passive: true });
+const revealObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); revealObs.unobserve(e.target); } }); }, { threshold: 0.1 });
+document.querySelectorAll('[data-r]').forEach(el => revealObs.observe(el));
+let staticMode = false;
+function animateCount(el, target, suffix) { if (staticMode) { el.textContent = target + (suffix||''); return; } const dur = 1400, start = performance.now(); const easeOut = t => 1 - Math.pow(1 - t, 3); const tick = (now) => { const p = easeOut(Math.min((now - start) / dur, 1)); el.textContent = Math.round(p * target) + (suffix || ''); if (p < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); }
+const statsEl = document.querySelector('.stats');
+const statsObs = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) { document.querySelectorAll('[data-count]').forEach(el => animateCount(el, parseInt(el.dataset.count), el.dataset.suffix || '')); statsObs.disconnect(); } }, { threshold: 0.5 });
+if (statsEl) statsObs.observe(statsEl);
+function finalizeForStatic() { staticMode = true; document.querySelectorAll('[data-r]').forEach(el => el.classList.add('on')); document.querySelectorAll('[data-count]').forEach(el => { el.textContent = el.dataset.count + (el.dataset.suffix || ''); }); }
+window.addEventListener('beforeprint', finalizeForStatic);
+if (window.matchMedia && window.matchMedia('print').matches) finalizeForStatic();
+if (location.hash === '#static') finalizeForStatic();
+const orbA = document.querySelector('.orb-a'), orbB = document.querySelector('.orb-b'), orbC = document.querySelector('.orb-c');
+document.addEventListener('mousemove', e => { const x = (e.clientX / window.innerWidth - 0.5) * 2, y = (e.clientY / window.innerHeight - 0.5) * 2; if (orbA) orbA.style.transform = `translateX(calc(-50% + ${x*18}px)) translateY(${y*12}px)`; if (orbB) orbB.style.transform = `translateX(${x*-14}px) translateY(${y*-10}px)`; if (orbC) orbC.style.transform = `translateX(${x*10}px) translateY(${y*14}px)`; }, { passive: true });
+function spawnParticle() { const p = document.createElement('div'); p.className = 'particle'; const x = Math.random() * window.innerWidth; const size = Math.random()*3+1; const dur = Math.random()*6+4; const delay = Math.random()*2; p.style.cssText = `left:${x}px; top:${window.innerHeight*0.4 + Math.random()*300}px; width:${size}px; height:${size}px; animation-duration:${dur}s; animation-delay:${delay}s;`; document.body.appendChild(p); setTimeout(() => p.remove(), (dur+delay)*1000); }
+setInterval(spawnParticle, 700);
+</script>
+</body>
+</html>

@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AI Mortgage Aggregator Ops System — Case Study</title>
+<title>AI Mortgage Aggregator Ops System, Case Study</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0a0a0f;
+    --bg: #06070a;
     --surface: #111118;
     --surface2: #1a1a24;
     --border: #2a2a3a;
-    --accent: #6c63ff;
-    --accent2: #00d4aa;
+    --accent: #3b6fff;
+    --accent2: #6a93ff;
     --text: #e8e8f0;
     --muted: #888899;
     --card-bg: #13131e;
@@ -106,7 +106,7 @@
   .hero-grid {
     position: absolute;
     inset: -10%;
-    background-image: radial-gradient(circle, rgba(108,99,255,0.12) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(59,111,255,0.12) 1px, transparent 1px);
     background-size: 40px 40px;
     animation: gridDrift 30s linear infinite;
     pointer-events: none;
@@ -123,21 +123,21 @@
   .orb-a {
     position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
     width: 700px; height: 400px; border-radius: 50%;
-    background: radial-gradient(ellipse at center, rgba(108,99,255,0.12) 0%, transparent 65%);
+    background: radial-gradient(ellipse at center, rgba(59,111,255,0.12) 0%, transparent 65%);
     filter: blur(40px); pointer-events: none; z-index: 0;
     animation: orbBreathe 8s ease-in-out infinite;
   }
   .orb-b {
     position: absolute; bottom: -80px; left: 10%;
     width: 300px; height: 300px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,212,170,0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(106,147,255,0.07) 0%, transparent 70%);
     filter: blur(60px); pointer-events: none; z-index: 0;
     animation: orbBreathe 10s ease-in-out 2s infinite;
   }
   .orb-c {
     position: absolute; bottom: -60px; right: 5%;
     width: 250px; height: 250px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(108,99,255,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(59,111,255,0.08) 0%, transparent 70%);
     filter: blur(50px); pointer-events: none; z-index: 0;
     animation: orbBreathe 7s ease-in-out 1s infinite;
   }
@@ -154,9 +154,9 @@
   /* Hero badge */
   .badge {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(108,99,255,0.12);
-    border: 1px solid rgba(108,99,255,0.3);
-    color: #a09fff; font-size: 12px; font-weight: 600;
+    background: rgba(59,111,255,0.12);
+    border: 1px solid rgba(59,111,255,0.3);
+    color: #8fb0ff; font-size: 12px; font-weight: 600;
     padding: 6px 16px; border-radius: 100px;
     margin-bottom: 28px;
     letter-spacing: 0.5px; text-transform: uppercase;
@@ -168,7 +168,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
   .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: dotPulse 2s infinite; }
-  @keyframes dotPulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(108,99,255,0.5)} 50%{opacity:0.5;box-shadow:0 0 0 6px rgba(108,99,255,0)} }
+  @keyframes dotPulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(59,111,255,0.5)} 50%{opacity:0.5;box-shadow:0 0 0 6px rgba(59,111,255,0)} }
 
   /* Hero h1 word animation */
   .hero h1 {
@@ -182,7 +182,7 @@
     display: inline-block;
     opacity: 0; transform: translateY(50px);
     animation: wordUp 0.75s var(--expo) forwards;
-    background: linear-gradient(135deg, #fff 0%, #a09fff 50%, #00d4aa 100%);
+    background: linear-gradient(135deg, #fff 0%, #8fb0ff 50%, #6a93ff 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
     background-size: 200% 200%;
@@ -218,9 +218,9 @@
     animation: fadeUp 0.5s var(--expo) forwards;
     transition: border-color 0.2s, color 0.2s, transform 0.3s var(--expo);
   }
-  .tag:hover { border-color: rgba(108,99,255,0.4); color: #a09fff; transform: translateY(-2px); }
-  .tag.accent { border-color: rgba(108,99,255,0.4); color: #a09fff; background: rgba(108,99,255,0.08); }
-  .tag.green  { border-color: rgba(0,212,170,0.4);  color: #00d4aa; background: rgba(0,212,170,0.08); }
+  .tag:hover { border-color: rgba(59,111,255,0.4); color: #8fb0ff; transform: translateY(-2px); }
+  .tag.accent { border-color: rgba(59,111,255,0.4); color: #8fb0ff; background: rgba(59,111,255,0.08); }
+  .tag.green  { border-color: rgba(106,147,255,0.4);  color: #6a93ff; background: rgba(106,147,255,0.08); }
 
   /* ── LAYOUT ── */
   .page-body {
@@ -244,14 +244,14 @@
   .stat { background: var(--card-bg); padding: 28px 24px; text-align: center; position: relative; overflow: hidden; }
   .stat::after {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(108,99,255,0.08), transparent 60%);
+    background: radial-gradient(circle at 50% 0%, rgba(59,111,255,0.08), transparent 60%);
     opacity: 0; transition: opacity 0.3s;
   }
   .stat:hover::after { opacity: 1; }
   .stat-num {
     font-size: 38px; font-weight: 900; letter-spacing: -1px;
     line-height: 1; margin-bottom: 6px;
-    background: linear-gradient(135deg, #fff, #a09fff);
+    background: linear-gradient(135deg, #fff, #8fb0ff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
   .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; }
@@ -264,7 +264,7 @@
   }
   .arch::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(108,99,255,0.04), transparent);
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(59,111,255,0.04), transparent);
     pointer-events: none;
   }
   .arch-flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px; }
@@ -275,9 +275,9 @@
     font-size: 22px; border: 1px solid var(--border);
     transition: transform 0.3s var(--expo), box-shadow 0.3s;
   }
-  .arch-icon:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 12px 32px rgba(108,99,255,0.2); }
-  .arch-icon.purple { background: rgba(108,99,255,0.15); border-color: rgba(108,99,255,0.3); }
-  .arch-icon.green  { background: rgba(0,212,170,0.15);  border-color: rgba(0,212,170,0.3);  }
+  .arch-icon:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 12px 32px rgba(59,111,255,0.2); }
+  .arch-icon.purple { background: rgba(59,111,255,0.15); border-color: rgba(59,111,255,0.3); }
+  .arch-icon.green  { background: rgba(106,147,255,0.15);  border-color: rgba(106,147,255,0.3);  }
   .arch-icon.orange { background: rgba(255,165,0,0.15);  border-color: rgba(255,165,0,0.3);  }
   .arch-icon.blue   { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.3); }
   .arch-icon.pink   { background: rgba(236,72,153,0.15); border-color: rgba(236,72,153,0.3); }
@@ -309,22 +309,22 @@
     position: relative; overflow: hidden;
     transition: border-color 0.3s, transform 0.4s var(--expo), box-shadow 0.3s;
   }
-  .wf-card:hover { border-color: rgba(108,99,255,0.35); transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
+  .wf-card:hover { border-color: rgba(59,111,255,0.35); transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,0.4); }
 
   /* Top gradient bar */
   .wf-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-  .wf-card.c1::before { background: linear-gradient(90deg, #6c63ff, #00d4aa); }
+  .wf-card.c1::before { background: linear-gradient(90deg, #3b6fff, #6a93ff); }
   .wf-card.c2::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
   .wf-card.c3::before { background: linear-gradient(90deg, #3b82f6, #8b5cf6); }
   .wf-card.c4::before { background: linear-gradient(90deg, #10b981, #06b6d4); }
   .wf-card.c5::before { background: linear-gradient(90deg, #f97316, #ec4899); }
   .wf-card.c6::before { background: linear-gradient(90deg, #84cc16, #22c55e); }
-  .wf-card.c7::before { background: linear-gradient(90deg, #00d4aa, #6c63ff); }
+  .wf-card.c7::before { background: linear-gradient(90deg, #6a93ff, #3b6fff); }
 
   /* Spotlight glow on hover */
   .wf-card::after {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(108,99,255,0.12), transparent 60%);
+    background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(59,111,255,0.12), transparent 60%);
     opacity: 0; transition: opacity 0.4s; pointer-events: none;
   }
   .wf-card:hover::after { opacity: 1; }
@@ -342,8 +342,8 @@
 
   /* ── DEMO ── */
   .demo-box {
-    background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(0,212,170,0.07));
-    border: 1px solid rgba(108,99,255,0.25);
+    background: linear-gradient(135deg, rgba(59,111,255,0.1), rgba(106,147,255,0.07));
+    border: 1px solid rgba(59,111,255,0.25);
     border-radius: 16px; padding: 36px 40px;
     display: flex; align-items: center; gap: 40px; margin-bottom: 50px;
     position: relative; overflow: hidden;
@@ -351,7 +351,7 @@
   .demo-box::before {
     content: ''; position: absolute;
     top: -80px; right: -80px; width: 300px; height: 300px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(108,99,255,0.08), transparent 70%);
+    background: radial-gradient(circle, rgba(59,111,255,0.08), transparent 70%);
     animation: orbBreathe 6s ease-in-out infinite; pointer-events: none;
   }
   .demo-left { flex: 1; position: relative; z-index: 1; }
@@ -390,7 +390,7 @@
     transition: border-color 0.2s, transform 0.3s var(--expo), box-shadow 0.3s;
     cursor: default;
   }
-  .stack-item:hover { border-color: rgba(108,99,255,0.35); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .stack-item:hover { border-color: rgba(59,111,255,0.35); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
   .stack-icon { font-size: 20px; }
   .stack-name { color: var(--text); }
   .stack-type { font-size: 11px; color: var(--muted); font-weight: 400; }
@@ -414,10 +414,10 @@
   }
   .outcome-card::after {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(0,212,170,0.08), transparent 60%);
+    background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(106,147,255,0.08), transparent 60%);
     opacity: 0; transition: opacity 0.4s; pointer-events: none;
   }
-  .outcome-card:hover { border-color: rgba(0,212,170,0.25); transform: translateY(-4px); }
+  .outcome-card:hover { border-color: rgba(106,147,255,0.25); transform: translateY(-4px); }
   .outcome-card:hover::after { opacity: 1; }
   .outcome-icon { font-size: 28px; margin-bottom: 12px; display: block; }
   .outcome-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
@@ -443,13 +443,13 @@
   .footer-left strong { color: var(--text); font-weight: 600; }
   .cta-btn {
     display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(135deg, #6c63ff, #5a52e8);
+    background: linear-gradient(135deg, #3b6fff, #5a52e8);
     color: #fff; font-size: 14px; font-weight: 700;
     padding: 12px 24px; border-radius: 10px; text-decoration: none;
     letter-spacing: 0.2px;
     transition: transform 0.3s var(--expo), box-shadow 0.3s;
   }
-  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(108,99,255,0.3); }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(59,111,255,0.3); }
 
   /* ── FLOATING PARTICLES ── */
   .particle {
@@ -498,21 +498,49 @@
     .demo-left h3 { font-size: 19px; }
   }
 
-  /* ── PRINT / PDF ── keep the dark design, just freeze animations ── */
+  /* ── PRINT / PDF ── clean, edge-to-edge, client-ready ── */
+  @page { size: 1280px 1810px; margin: 0; }
   @media print {
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    html, body { background: var(--bg) !important; padding-top: 0 !important; }
+    html, body { background: var(--bg) !important; padding-top: 0 !important; width: 1280px !important; margin: 0 !important; }
     .back-nav, #pgbar, .particle { display: none !important; }
+    /* match the page width exactly: no clipped elements, no white side gutters */
+    .hero { width: 1280px !important; margin: 0 !important; padding: 56px 40px 50px !important; }
+    .page-body { width: 1280px !important; margin: 0 !important; padding: 0 40px 60px !important; }
     /* reveal everything (animations don't run in print) */
     [data-r] { opacity: 1 !important; transform: none !important; }
     .arch-node, .arch-arrow { opacity: 1 !important; transform: none !important; }
     .hero-word { opacity: 1 !important; transform: none !important; -webkit-text-fill-color: transparent !important; }
     .badge, .hero p, .tag { opacity: 1 !important; transform: none !important; animation: none !important; }
     .slack-bot { opacity: 1 !important; transform: none !important; }
-    .hero { padding-top: 40px; }
-    /* avoid awkward page breaks through cards */
-    .wf-card, .outcome-card, .stat, .arch, .ba-table, .demo-box, .stack-item, .ba-row { break-inside: avoid; page-break-inside: avoid; }
+    /* keep whole blocks together across page breaks */
+    .stats, .arch, .workflows, .wf-card, .outcome-card, .stat, .ba-table, .demo-box, .stack, .outcomes, .ba-row { break-inside: avoid; page-break-inside: avoid; }
     .section-title, .section-label { break-after: avoid; page-break-after: avoid; }
+    .divider { margin: 34px 0 !important; }
+  }
+</style>
+<style>
+  /* Cinematic atmosphere + a11y, shared with homepage */
+  body::before {
+    content:''; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(62% 52% at 78% -5%, rgba(59,111,255,0.12), transparent 60%),
+      radial-gradient(50% 45% at 6% 104%, rgba(59,111,255,0.07), transparent 55%),
+      radial-gradient(45% 45% at 50% 50%, rgba(22,34,78,0.10), transparent 72%);
+  }
+  body::after {
+    content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    opacity:0.045; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:190px 190px;
+  }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline:2px solid #3b6fff; outline-offset:3px; border-radius:5px;
+  }
+  @media (hover:none),(pointer:coarse){ body{cursor:auto !important;} #cur,#cdot{display:none !important;} }
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+    [data-r],[data-stagger]{ opacity:1 !important; transform:none !important; clip-path:none !important; }
   }
 </style>
 </head>
@@ -546,7 +574,7 @@
     <span class="hero-word" style="animation-delay:0.35s">AI&nbsp;Mortgage</span><br>
     <span class="hero-word" style="animation-delay:0.50s">Aggregator&nbsp;</span><span class="hero-word" style="animation-delay:0.66s">Ops&nbsp;System</span>
   </h1>
-  <p>A centralised AI operations brain for an Australian mortgage aggregator — it onboards brokers, categorises &amp; scores every lead, routes it to the right broker in seconds, tracks the loan pipeline, and keeps every file audit-ready. A digital operations manager that never sleeps.</p>
+  <p>A centralised AI operations brain for an Australian mortgage aggregator, it onboards brokers, categorises &amp; scores every lead, routes it to the right broker in seconds, tracks the loan pipeline, and keeps every file audit-ready. A digital operations manager that never sleeps.</p>
   <div class="hero-tags">
     <span class="tag accent" style="animation-delay:1.0s">n8n Automation</span>
     <span class="tag accent" style="animation-delay:1.08s">OpenAI / LLM</span>
@@ -585,13 +613,13 @@
 <!-- THE PROBLEM -->
 <div data-r><div class="section-label">The Situation</div></div>
 <div class="section-title" data-r data-d="1">From Spreadsheet Chaos to a Single Operations Brain</div>
-<div class="section-sub" data-r data-d="2">Aussie Mortgage Group runs 5 specialist brokers across NSW, VIC, QLD &amp; WA — previously managed by spreadsheets, email threads, phone calls and shared folders.</div>
+<div class="section-sub" data-r data-d="2">Aussie Mortgage Group runs 5 specialist brokers across NSW, VIC, QLD &amp; WA, previously managed by spreadsheets, email threads, phone calls and shared folders.</div>
 
 <div class="outcomes" data-r data-d="2" style="margin-bottom:50px">
   <div class="outcome-card">
     <span class="outcome-icon">🐌</span>
     <div class="outcome-title">Slow &amp; inconsistent</div>
-    <div class="outcome-text">Broker onboarding took weeks. Leads were assigned by gut feel — and some were simply forgotten before anyone followed up.</div>
+    <div class="outcome-text">Broker onboarding took weeks. Leads were assigned by gut feel, and some were simply forgotten before anyone followed up.</div>
   </div>
   <div class="outcome-card">
     <span class="outcome-icon">🕳️</span>
@@ -629,14 +657,14 @@
 <!-- WORKFLOWS -->
 <div data-r><div class="section-label">Module Breakdown</div></div>
 <div class="section-title" data-r data-d="1">7 Interconnected Workflows</div>
-<div class="section-sub" data-r data-d="2">Five business modules plus two cross-cutting layers — every one writing to the same central database.</div>
+<div class="section-sub" data-r data-d="2">Five business modules plus two cross-cutting layers, every one writing to the same central database.</div>
 
 <div class="workflows">
   <div class="wf-card c1" data-r data-d="1">
     <div class="wf-num">M1 · Webhook</div>
     <span class="wf-emoji">🧑‍💼</span>
     <div class="wf-name">Broker Onboarding</div>
-    <div class="wf-desc">A broker application auto-creates their record, a Google Drive folder, an onboarding checklist, a welcome email and an ops alert — then chases missing items until they're compliant.</div>
+    <div class="wf-desc">A broker application auto-creates their record, a Google Drive folder, an onboarding checklist, a welcome email and an ops alert, then chases missing items until they're compliant.</div>
     <div class="wf-tags"><span class="wf-tag">Airtable</span><span class="wf-tag">Drive</span><span class="wf-tag">Gmail</span><span class="wf-tag">Discord</span></div>
   </div>
 
@@ -644,7 +672,7 @@
     <div class="wf-num">M2 · Webhook · AI Flagship</div>
     <span class="wf-emoji">🎯</span>
     <div class="wf-name">Lead Intake &amp; AI Assignment</div>
-    <div class="wf-desc">The centrepiece. Every lead is captured, then AI <strong style="color:#a09fff">categorises</strong> it (First Home Buyer / Refinance / Investment / Self-Employed / Commercial), <strong style="color:#a09fff">scores</strong> it 0–100, and a matching engine assigns the <strong style="color:#a09fff">best broker by specialty + state + live workload</strong>. The broker is notified instantly by email &amp; Discord and a calendar follow-up is created — so no lead is ever forgotten.</div>
+    <div class="wf-desc">The centrepiece. Every lead is captured, then AI <strong style="color:#8fb0ff">categorises</strong> it (First Home Buyer / Refinance / Investment / Self-Employed / Commercial), <strong style="color:#8fb0ff">scores</strong> it 0-100, and a matching engine assigns the <strong style="color:#8fb0ff">best broker by specialty + state + live workload</strong>. The broker is notified instantly by email &amp; Discord and a calendar follow-up is created, so no lead is ever forgotten.</div>
     <div class="wf-tags"><span class="wf-tag">OpenAI</span><span class="wf-tag">Lead Scoring</span><span class="wf-tag">Smart Routing</span><span class="wf-tag">Calendar</span><span class="wf-tag">Discord</span></div>
   </div>
 
@@ -652,7 +680,7 @@
     <div class="wf-num">M3 · Webhook + Cron</div>
     <span class="wf-emoji">📈</span>
     <div class="wf-name">Loan Pipeline Management</div>
-    <div class="wf-desc">Tracks 8 stages from New Lead to Settlement. Timestamps every move, measures time-in-stage, and a daily sweep nudges stalled files — escalating real bottlenecks to the ops manager.</div>
+    <div class="wf-desc">Tracks 8 stages from New Lead to Settlement. Timestamps every move, measures time-in-stage, and a daily sweep nudges stalled files, escalating real bottlenecks to the ops manager.</div>
     <div class="wf-tags"><span class="wf-tag">Airtable</span><span class="wf-tag">SLA Tracking</span><span class="wf-tag">Auto-Escalation</span></div>
   </div>
 
@@ -660,7 +688,7 @@
     <div class="wf-num">M4 · Webhook · AI</div>
     <span class="wf-emoji">🛡️</span>
     <div class="wf-name">AI Compliance Monitoring</div>
-    <div class="wf-desc">When a broker marks a file ready, AI checks the 6 mandatory artefacts (incl. Best Interest Duty), detects missing documents, writes an audit-ready summary and flags risk — before a human officer signs off.</div>
+    <div class="wf-desc">When a broker marks a file ready, AI checks the 6 mandatory artefacts (incl. Best Interest Duty), detects missing documents, writes an audit-ready summary and flags risk, before a human officer signs off.</div>
     <div class="wf-tags"><span class="wf-tag">OpenAI</span><span class="wf-tag">BID Check</span><span class="wf-tag">Risk Flags</span></div>
   </div>
 
@@ -668,7 +696,7 @@
     <div class="wf-num">M5 · Looker Studio</div>
     <span class="wf-emoji">📊</span>
     <div class="wf-name">Executive Dashboards</div>
-    <div class="wf-desc">Live, role-specific dashboards: broker performance, the lead funnel, pipeline health and compliance posture — plus a weekly snapshot emailed to the owner automatically.</div>
+    <div class="wf-desc">Live, role-specific dashboards: broker performance, the lead funnel, pipeline health and compliance posture, plus a weekly snapshot emailed to the owner automatically.</div>
     <div class="wf-tags"><span class="wf-tag">Looker</span><span class="wf-tag">Real-Time BI</span><span class="wf-tag">Auto-Digest</span></div>
   </div>
 
@@ -676,7 +704,7 @@
     <div class="wf-num">WF5 · Scheduled</div>
     <span class="wf-emoji">⏰</span>
     <div class="wf-name">Reminders &amp; Digests</div>
-    <div class="wf-desc">Cron-driven jobs handle follow-up reminders, onboarding chasers, stalled-file sweeps, weekly pipeline reports and broker scorecards — keeping everyone on track without anyone asking.</div>
+    <div class="wf-desc">Cron-driven jobs handle follow-up reminders, onboarding chasers, stalled-file sweeps, weekly pipeline reports and broker scorecards, keeping everyone on track without anyone asking.</div>
     <div class="wf-tags"><span class="wf-tag">Cron</span><span class="wf-tag">Gmail</span><span class="wf-tag">Discord</span></div>
   </div>
 
@@ -684,14 +712,14 @@
     <div class="wf-num">WF0 · Error Trigger</div>
     <span class="wf-emoji">🚨</span>
     <div class="wf-name">Global Error Handler</div>
-    <div class="wf-desc">A single safety net catches any failed execution across every workflow, logs it to the activity table, and alerts ops on Discord — so no failure is ever silent.</div>
+    <div class="wf-desc">A single safety net catches any failed execution across every workflow, logs it to the activity table, and alerts ops on Discord, so no failure is ever silent.</div>
     <div class="wf-tags"><span class="wf-tag">Resilience</span><span class="wf-tag">Audit Log</span></div>
   </div>
 
-  <div class="wf-card c7" data-r data-d="8" style="display:flex;flex-direction:column;justify-content:center;background:rgba(108,99,255,0.05);border-color:rgba(108,99,255,0.2);">
+  <div class="wf-card c7" data-r data-d="8" style="display:flex;flex-direction:column;justify-content:center;background:rgba(59,111,255,0.05);border-color:rgba(59,111,255,0.2);">
     <div style="font-size:36px;margin-bottom:12px;">🗃️</div>
-    <div style="font-size:14px;font-weight:700;margin-bottom:6px;color:#a09fff;">One Source of Truth</div>
-    <div style="font-size:13px;color:var(--muted);line-height:1.6;">6 linked Airtable tables — Brokers, Leads, Loan Applications, Compliance, Documents &amp; Activities — that every workflow reads &amp; writes.</div>
+    <div style="font-size:14px;font-weight:700;margin-bottom:6px;color:#8fb0ff;">One Source of Truth</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.6;">6 linked Airtable tables, Brokers, Leads, Loan Applications, Compliance, Documents &amp; Activities, that every workflow reads &amp; writes.</div>
   </div>
 </div>
 
@@ -700,7 +728,7 @@
   <div class="demo-left">
     <div class="section-label" style="margin-bottom:8px">Live Flow</div>
     <h3>A Lead Routed in Under 60 Seconds</h3>
-    <p>A new enquiry hits the intake form. The AI classifies and scores it, picks the best-matched broker by specialty, state and workload, and fires the notification — all before a human would have even opened the spreadsheet.</p>
+    <p>A new enquiry hits the intake form. The AI classifies and scores it, picks the best-matched broker by specialty, state and workload, and fires the notification, all before a human would have even opened the spreadsheet.</p>
   </div>
   <div class="demo-right">
     <div class="slack-bubble">
@@ -710,8 +738,8 @@
         <div>
           <div class="slack-name">AMG Ops Bot</div>
           <div class="slack-reply">
-            🔥 <strong>Hot lead (Score 82)</strong> — Refinance, VIC, $640k.<br>
-            Assigned to <strong>Broker 2 · Refinance Specialist (VIC)</strong> — best specialty + state match, capacity 7/15.<br>
+            🔥 <strong>Hot lead (Score 82)</strong>, Refinance, VIC, $640k.<br>
+            Assigned to <strong>Broker 2 · Refinance Specialist (VIC)</strong>, best specialty + state match, capacity 7/15.<br>
             📅 Follow-up reminder set for <strong>today, 5:00 PM</strong>.
           </div>
         </div>
@@ -723,7 +751,7 @@
 <!-- TECH STACK -->
 <div data-r><div class="section-label">Technology</div></div>
 <div class="section-title" data-r data-d="1">Built With</div>
-<div class="section-sub" data-r data-d="2" style="margin-bottom:20px">All free or low-cost tools — no custom frontend, almost no custom code. Runs for ~$15–25/month.</div>
+<div class="section-sub" data-r data-d="2" style="margin-bottom:20px">All free or low-cost tools, no custom frontend, almost no custom code. Runs for ~$15-25/month.</div>
 
 <div class="stack">
   <div class="stack-item" data-r data-d="1"><span class="stack-icon">⚙️</span><div><div class="stack-name">n8n</div><div class="stack-type">Workflow Orchestration</div></div></div>
@@ -745,12 +773,12 @@
   <div class="outcome-card" data-r data-d="1">
     <span class="outcome-icon">⏱️</span>
     <div class="outcome-title">15+ hrs/week saved</div>
-    <div class="outcome-text">No more manual record creation, lead routing, follow-up chasing, file-checking or report building. The system does the admin; the team sells loans. Roughly a 60–70% cut in operational admin.</div>
+    <div class="outcome-text">No more manual record creation, lead routing, follow-up chasing, file-checking or report building. The system does the admin; the team sells loans. Roughly a 60-70% cut in operational admin.</div>
   </div>
   <div class="outcome-card" data-r data-d="2">
     <span class="outcome-icon">⚡</span>
     <div class="outcome-title">No lead left behind</div>
-    <div class="outcome-text">Every lead is scored and assigned in under 60 seconds, with an enforced follow-up reminder. Warm enquiries stop going cold — directly protecting revenue.</div>
+    <div class="outcome-text">Every lead is scored and assigned in under 60 seconds, with an enforced follow-up reminder. Warm enquiries stop going cold, directly protecting revenue.</div>
   </div>
   <div class="outcome-card" data-r data-d="3">
     <span class="outcome-icon">🛡️</span>
@@ -760,17 +788,17 @@
   <div class="outcome-card" data-r data-d="4">
     <span class="outcome-icon">👁️</span>
     <div class="outcome-title">Total visibility</div>
-    <div class="outcome-text">The owner sees broker performance, the lead funnel, pipeline health and compliance risk in real time — and gets a weekly summary in their inbox without lifting a finger.</div>
+    <div class="outcome-text">The owner sees broker performance, the lead funnel, pipeline health and compliance risk in real time, and gets a weekly summary in their inbox without lifting a finger.</div>
   </div>
   <div class="outcome-card" data-r data-d="5">
     <span class="outcome-icon">⚖️</span>
     <div class="outcome-title">Fair, consistent routing</div>
-    <div class="outcome-text">Leads are matched on specialty, state and live workload — balancing distribution across brokers and removing the bias and guesswork of manual assignment.</div>
+    <div class="outcome-text">Leads are matched on specialty, state and live workload, balancing distribution across brokers and removing the bias and guesswork of manual assignment.</div>
   </div>
   <div class="outcome-card" data-r data-d="6">
     <span class="outcome-icon">💸</span>
     <div class="outcome-title">Enterprise-grade for ~$20/mo</div>
-    <div class="outcome-text">Built entirely on free and low-cost tools. A complete digital operations manager for the price of a couple of coffees a week — and it scales without a rebuild.</div>
+    <div class="outcome-text">Built entirely on free and low-cost tools. A complete digital operations manager for the price of a couple of coffees a week, and it scales without a rebuild.</div>
   </div>
 </div>
 
@@ -787,8 +815,8 @@
   </div>
   <div class="ba-row">
     <div class="ba-cell metric">Broker onboarding</div>
-    <div class="ba-cell before">2–3 weeks</div>
-    <div class="ba-cell after">2–3 days, system-driven</div>
+    <div class="ba-cell before">2-3 weeks</div>
+    <div class="ba-cell after">2-3 days, system-driven</div>
   </div>
   <div class="ba-row">
     <div class="ba-cell metric">Lead → broker assignment</div>
@@ -818,7 +846,7 @@
   <div class="ba-row">
     <div class="ba-cell metric">Weekly admin hours</div>
     <div class="ba-cell before">High &amp; growing</div>
-    <div class="ba-cell after">~60–70% reduction</div>
+    <div class="ba-cell after">~60-70% reduction</div>
   </div>
 </div>
 
@@ -894,7 +922,7 @@ document.querySelectorAll('.wf-card, .outcome-card').forEach(card => {
 const slackDemo = document.getElementById('slackDemo');
 const slackCmd  = document.getElementById('slackCmd');
 const slackBot  = document.getElementById('slackBot');
-const fullCmd   = "📥 New lead: Sarah M. — \"Want to refinance my VIC home, ~$640k\"";
+const fullCmd   = "📥 New lead: Sarah M., \"Want to refinance my VIC home, ~$640k\"";
 let typingDone  = false;
 
 function typeSlack() {
