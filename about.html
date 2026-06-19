@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Juan Paolo Blanco | Video Editor & Automation Specialist</title>
+  <meta name="description" content="Juan Paolo Blanco is a video editor and automation engineer with 10+ years across digital marketing, agency production, and advertising infrastructure. Based in Manila, working globally.">
+  <link rel="canonical" href="https://jpaoblanco.com/about.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-loading subpage">
+
+  <div id="sp"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-frame">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="loader-name">
+      <span class="ln-w"><span class="ln-c">P</span></span>
+      <span class="ln-w"><span class="ln-c">A</span></span>
+      <span class="ln-w"><span class="ln-c">O</span></span>
+      <span class="ln-w"><span class="ln-c">L</span></span>
+      <span class="ln-w"><span class="ln-c">O</span></span>
+      <span class="ln-sp"></span>
+      <span class="ln-w"><span class="ln-c">B</span></span>
+      <span class="ln-w"><span class="ln-c">L</span></span>
+      <span class="ln-w"><span class="ln-c">A</span></span>
+      <span class="ln-w"><span class="ln-c">N</span></span>
+      <span class="ln-w"><span class="ln-c">C</span></span>
+      <span class="ln-w"><span class="ln-c">O</span></span>
+    </div>
+    <div class="loader-progress">
+      <div class="loader-bar-row">
+        <div class="loader-track"><div class="loader-fill" id="lf"></div></div>
+        <div class="loader-pct" id="loaderPct">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cur"></div>
+  <div class="cursor-dot" id="cdot"></div>
+
+  <!-- Toast -->
+  <div id="toast">Email copied</div>
+
+  <!-- Nav -->
+  <nav id="nav">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">JP<b>.</b></a>
+      <ul class="nav-links">
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="gear.html">Gear</a></li>
+        <li><a href="certs.html">Certs</a></li>
+      </ul>
+      <a href="#contact" class="nav-hire magnetic">Get in Touch</a>
+    </div>
+  </nav>
+
+  <!-- ========================
+       ABOUT
+  ========================= -->
+  <section id="about">
+    <div class="wrap">
+
+      <!-- Left: text -->
+      <div class="am-left">
+        <div class="am-label" id="amLabel">About Me</div>
+        <h2 class="am-heading" id="amHeading">
+          I'm Juan Paolo,<br>
+          video editor &amp;<br>
+          automation <em class="eng">engineer</em>.
+        </h2>
+        <p class="am-body" id="amBody1">
+          With <strong>10+ years</strong> spanning digital marketing, agency production, and advertising infrastructure, I bring a rare combination of creative instinct and technical depth. I specialize in high-conversion video content for paid ads, social media, and executive personal brands, including agency work serving clients like <strong>Jason Harris</strong> (CEO of Mekanism), <strong>Ayman Al-Abdullah</strong> (former CEO of AppSumo), and <strong>Tai Lopez</strong>.
+        </p>
+        <p class="am-body" id="amBody2" style="transition-delay: 0.28s;">
+          Beyond the edit suite, I design <strong>AI automation workflows</strong> using n8n, Make, and Zapier, building systems that eliminate bottlenecks and give creative teams the space to focus on what actually moves the needle.
+        </p>
+
+        <p class="am-close" id="amClose">
+          Based in Manila &nbsp;/&nbsp; Working with clients globally &nbsp;/&nbsp; Always building.
+        </p>
+      </div>
+
+      <!-- Right: photo collage -->
+      <div class="photo-collage">
+        <div class="ph-pos" id="pos0">
+          <div class="ph-float" id="photoA">
+            <img src="1pic.jpg" alt="Juan Paolo Blanco">
+          </div>
+        </div>
+        <div class="ph-pos" id="pos1">
+          <div class="ph-float" id="photoB">
+            <img src="2pic.jpg" alt="Juan Paolo Blanco">
+          </div>
+        </div>
+        <div class="ph-pos" id="pos2">
+          <div class="ph-float" id="photoC">
+            <img src="3pic.jpg" alt="Juan Paolo Blanco">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================
+       CONTACT
+  ========================= -->
+  <section id="contact">
+    <div class="contact-ghost">CONTACT</div>
+    <div class="contact-inner">
+      <div data-r>
+        <h2 class="contact-heading">
+          LET'S BUILD<br>SOMETHING <span>REAL.</span>
+        </h2>
+        <p class="contact-sub">
+          Open to video production projects, automation consulting, and marketing infrastructure work. Based in Manila, working globally.
+        </p>
+        <button class="contact-email-btn magnetic" onclick="copyEmail()">
+          blanco.jp19@gmail.com
+          <span class="copy-icon">&#128203;</span>
+        </button>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/jpaoblanco" target="_blank" rel="noopener noreferrer" class="clink">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="mailto:blanco.jp19@gmail.com" class="clink">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M2 7l10 7 10-7"/>
+            </svg>
+            Send Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-name">Juan Paolo Blanco</div>
+      <div class="footer-copy">Manila, Philippines &nbsp;/&nbsp; 2026</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="mailto:blanco.jp19@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

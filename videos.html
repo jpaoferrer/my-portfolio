@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Portfolio - Juan Paolo Blanco, Video Editor</title>
+  <meta name="description" content="Featured video editing portfolio by Juan Paolo Blanco: short-form reels, promotional videos, and long-form edits for paid ads, social media, and brands.">
+  <link rel="canonical" href="https://jpaoblanco.com/videos.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-loading subpage">
+
+  <div id="sp"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-frame">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="loader-name">
+      <span class="ln-w"><span class="ln-c">P</span></span>
+      <span class="ln-w"><span class="ln-c">A</span></span>
+      <span class="ln-w"><span class="ln-c">O</span></span>
+      <span class="ln-w"><span class="ln-c">L</span></span>
+      <span class="ln-w"><span class="ln-c">O</span></span>
+      <span class="ln-sp"></span>
+      <span class="ln-w"><span class="ln-c">B</span></span>
+      <span class="ln-w"><span class="ln-c">L</span></span>
+      <span class="ln-w"><span class="ln-c">A</span></span>
+      <span class="ln-w"><span class="ln-c">N</span></span>
+      <span class="ln-w"><span class="ln-c">C</span></span>
+      <span class="ln-w"><span class="ln-c">O</span></span>
+    </div>
+    <div class="loader-progress">
+      <div class="loader-bar-row">
+        <div class="loader-track"><div class="loader-fill" id="lf"></div></div>
+        <div class="loader-pct" id="loaderPct">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cur"></div>
+  <div class="cursor-dot" id="cdot"></div>
+
+  <!-- Toast -->
+  <div id="toast">Email copied</div>
+
+  <!-- Nav -->
+  <nav id="nav">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">JP<b>.</b></a>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="videos.html" aria-current="page">Videos</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="gear.html">Gear</a></li>
+        <li><a href="certs.html">Certs</a></li>
+      </ul>
+      <a href="#contact" class="nav-hire magnetic">Get in Touch</a>
+    </div>
+  </nav>
+
+  <section id="videos">
+    <div class="wrap">
+
+      <div class="vid-header" data-r>
+        <div>
+          <div class="sec-label">Video Work</div>
+          <h2 class="sec-heading">Featured Projects</h2>
+        </div>
+        <div class="vid-tabs">
+          <button class="vt active" data-cat="reels">Reels</button>
+          <button class="vt" data-cat="promo">Promotional</button>
+          <button class="vt" data-cat="long">Long Form</button>
+        </div>
+      </div>
+
+      <!-- Reels -->
+      <div class="vid-cat active" id="cat-reels">
+        <div class="vid-grid-reels">
+          <div class="vid-reel-wrap" data-r>
+            <div class="vid-reel-title">Ayman Shorts</div>
+            <div class="vid-card reel">
+              <video preload="metadata" playsinline>
+                <source src="https://portfoliovideo.b-cdn.net/ayman-shorts.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="vid-reel-wrap" data-r data-d="1">
+            <div class="vid-reel-title">Memento Mori</div>
+            <div class="vid-card reel">
+              <video preload="metadata" playsinline>
+                <source src="https://portfoliovideo.b-cdn.net/Memento-Mori.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="vid-reel-wrap" data-r data-d="2">
+            <div class="vid-reel-title">Real Estate</div>
+            <div class="vid-card reel">
+              <video preload="metadata" playsinline>
+                <source src="https://portfoliovideo.b-cdn.net/real-estate-shorts.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="vid-reel-wrap" data-r data-d="3">
+            <div class="vid-reel-title">Peter Vanderwall</div>
+            <div class="vid-card reel">
+              <video preload="metadata" playsinline>
+                <source src="https://portfoliovideo.b-cdn.net/peter-vanderwall-shorts.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Promotional -->
+      <div class="vid-cat" id="cat-promo">
+        <div class="vid-grid cols-3">
+          <div class="vid-reel-wrap" data-r>
+            <div class="vid-reel-title">Home Care Champions</div>
+            <div class="vid-card wide">
+              <video preload="metadata" playsinline>
+                <source src="https://portfoliovideo.b-cdn.net/home-care-champions-experience.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="vid-reel-wrap" data-r data-d="1">
+            <div class="vid-reel-title">HCCE Promo</div>
+            <div class="vid-card wide">
+              <video preload="metadata" playsinline>
+                <source src="https://portfoliovideo.b-cdn.net/hcce-promo.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="vid-reel-wrap" data-r data-d="2">
+            <div class="vid-reel-title">Teaser Video</div>
+            <div class="vid-card wide">
+              <video preload="metadata" playsinline>
+                <source src="https://portfoliovideo.b-cdn.net/teaser-video.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Long Form -->
+      <div class="vid-cat" id="cat-long">
+        <div class="vid-grid cols-2">
+          <div class="vid-reel-wrap" data-r>
+            <div class="vid-reel-title">Overpaid Taxes: How To Find Out</div>
+            <div class="vid-card wide">
+              <video preload="metadata" playsinline>
+                <source src="https://portfoliovideo.b-cdn.net/overpaid-taxes-howtofindout.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="vid-reel-wrap" data-r data-d="1">
+            <div class="vid-reel-title">More Leads: Without Spending More Money</div>
+            <div class="vid-card wide">
+              <video preload="metadata" playsinline disablepictureinpicture>
+                <source src="https://portfoliovideo.b-cdn.net/More-leads-less-money.mp4" type="video/mp4">
+              </video>
+              <div class="vid-overlay">
+                <div class="vid-play-btn"><div class="vid-play-icon"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================
+       CONTACT
+  ========================= -->
+  <section id="contact">
+    <div class="contact-ghost">CONTACT</div>
+    <div class="contact-inner">
+      <div data-r>
+        <h2 class="contact-heading">
+          LET'S BUILD<br>SOMETHING <span>REAL.</span>
+        </h2>
+        <p class="contact-sub">
+          Open to video production projects, automation consulting, and marketing infrastructure work. Based in Manila, working globally.
+        </p>
+        <button class="contact-email-btn magnetic" onclick="copyEmail()">
+          blanco.jp19@gmail.com
+          <span class="copy-icon">&#128203;</span>
+        </button>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/jpaoblanco" target="_blank" rel="noopener noreferrer" class="clink">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="mailto:blanco.jp19@gmail.com" class="clink">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M2 7l10 7 10-7"/>
+            </svg>
+            Send Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-name">Juan Paolo Blanco</div>
+      <div class="footer-copy">Manila, Philippines &nbsp;/&nbsp; 2026</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="mailto:blanco.jp19@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
