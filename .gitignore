@@ -6,3 +6,6 @@
 
 # Local tooling / editor config
 .claude/
+
+# Node dependencies (used only for local image optimization)
+node_modules/
