@@ -607,3 +607,25 @@
       setInterval(updateGeoClock, 1000);
     }
 
+    // ========== Mobile Nav (hamburger menu) ==========
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    if (navToggle && navMenu) {
+      const setOpen = (open) => {
+        document.body.classList.toggle('nav-open', open);
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+      navToggle.addEventListener('click', () => {
+        setOpen(!document.body.classList.contains('nav-open'));
+      });
+      // Close after tapping a link inside the menu
+      navMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => setOpen(false));
+      });
+      // Close on Escape, and reset when resizing up to desktop
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) setOpen(false);
+      }, { passive: true });
+    }
+
