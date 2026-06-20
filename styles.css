@@ -1519,6 +1519,10 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-2);
+      /* Keep titles to one line so every card starts at the same height */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Standard grids */
