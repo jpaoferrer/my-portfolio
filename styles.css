@@ -1548,6 +1548,13 @@
       display: block;
     }
 
+    /* In fullscreen, show the video at its true aspect ratio (letterboxed),
+       not cropped/zoomed like the thumbnail card. Separate rules per vendor
+       prefix so an unknown selector doesn't drop the whole group. */
+    .vid-card video:fullscreen { object-fit: contain; }
+    .vid-card video:-webkit-full-screen { object-fit: contain; }
+    .vid-card video:-moz-full-screen { object-fit: contain; }
+
     /* Play overlay */
     .vid-overlay {
       position: absolute;
