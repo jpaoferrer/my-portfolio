@@ -52,31 +52,32 @@
     // Failsafe: never trap the visitor behind the loader if a video/asset hangs
     setTimeout(() => { setPct(100); dismissLoader(); }, 4000);
 
-    // ========== Custom Cursor ==========
+    // ========== Custom Cursor (desktop / fine-pointer only, event-driven) ==========
     const cur = document.getElementById('cur');
     const cdot = document.getElementById('cdot');
-    let mx = -100, my = -100;
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX;
-      my = e.clientY;
-      cdot.style.transform = `translate(${mx - 2.5}px, ${my - 2.5}px)`;
-    });
+    if (cur && cdot && finePointer) {
+      // Position set directly on pointer move — no always-on requestAnimationFrame loop
+      document.addEventListener('mousemove', e => {
+        cdot.style.transform = `translate(${e.clientX - 2.5}px, ${e.clientY - 2.5}px)`;
+        cur.style.transform  = `translate(${e.clientX - 19}px, ${e.clientY - 19}px)`;
+      }, { passive: true });
 
-    (function cursorLoop() {
-      cur.style.transform = `translate(${mx - 19}px, ${my - 19}px)`;
-      requestAnimationFrame(cursorLoop);
-    })();
+      document.querySelectorAll('a, button, .magnetic').forEach(el => {
+        el.addEventListener('mouseenter', () => cur.classList.add('big'));
+        el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+      });
 
-    document.querySelectorAll('a, button, .magnetic').forEach(el => {
-      el.addEventListener('mouseenter', () => cur.classList.add('big'));
-      el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-    });
+      document.addEventListener('mouseleave', () => { cur.classList.add('hide'); cdot.classList.add('hide'); });
+      document.addEventListener('mouseenter', () => { cur.classList.remove('hide'); cdot.classList.remove('hide'); });
+    }
 
-    // ========== Hero cursor glow + parallax ==========
+    // ========== Hero cursor glow + parallax (desktop / fine-pointer, motion-on) ==========
     (function() {
       const hero = document.getElementById('hero');
-      if (!hero) return;
+      if (!hero || !finePointer) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       // Inject spotlight blob into hero
       const glow = document.createElement('div');
@@ -98,20 +99,29 @@
       let tNx = 0,  tNy = 0;  // parallax target, normalized -0.5…0.5
       let cNx = 0,  cNy = 0;  // parallax current (lerped, slower)
       let inHero = false;
+      let running = false;     // only run the rAF loop while it has work to do
 
       // Parallax only starts after load animations finish
       let parallaxReady = false;
       setTimeout(() => { parallaxReady = true; }, 2200);
 
+      function start() {
+        if (running) return;
+        running = true;
+        requestAnimationFrame(heroLoop);
+      }
+
       hero.addEventListener('mouseenter', () => {
         inHero = true;
         glow.style.opacity = '1';
+        start();
       });
 
       hero.addEventListener('mouseleave', () => {
         inHero = false;
         glow.style.opacity = '0';
         tNx = 0; tNy = 0; // drift back to rest
+        start();
       });
 
       hero.addEventListener('mousemove', e => {
@@ -120,9 +130,10 @@
         tGy = e.clientY - r.top;
         tNx = tGx / r.width  - 0.5;
         tNy = tGy / r.height - 0.5;
-      });
+        start();
+      }, { passive: true });
 
-      (function heroLoop() {
+      function heroLoop() {
         // Glow lerp — snappier so light "arrives" quickly
         cGx += (tGx - cGx) * 0.09;
         cGy += (tGy - cGy) * 0.09;
@@ -146,12 +157,13 @@
           if (desc) desc.style.transform = `translate(${cNx * 3}px,  ${cNy * 2}px)`;
         }
 
+        // Stop once the pointer has left and motion has settled — no idle frames
+        const settled = Math.abs(tGx - cGx) < 0.1 && Math.abs(tGy - cGy) < 0.1 &&
+                        Math.abs(tNx - cNx) < 0.0004 && Math.abs(tNy - cNy) < 0.0004;
+        if (!inHero && settled) { running = false; return; }
         requestAnimationFrame(heroLoop);
-      })();
+      }
     })();
-
-    document.addEventListener('mouseleave', () => { cur.classList.add('hide'); cdot.classList.add('hide'); });
-    document.addEventListener('mouseenter', () => { cur.classList.remove('hide'); cdot.classList.remove('hide'); });
 
     // ========== Nav scroll ==========
     const nav = document.getElementById('nav');
@@ -540,28 +552,32 @@
       tlObs.observe(timeline);
     }
 
-    // ========== WOW LAYER: Ambient Floating Particles ==========
-    if (!prefersReduced) {
+    // ========== Ambient Floating Particles (light, desktop only, capped) ==========
+    if (!prefersReduced && finePointer) {
+      let particleCount = 0;
+      const MAX_PARTICLES = 8;
       function spawnParticle() {
+        // Skip work when the tab is hidden or we're already at the cap
+        if (document.hidden || particleCount >= MAX_PARTICLES) return;
+        particleCount++;
         const p = document.createElement('div');
         p.className = 'ap';
         const size = Math.random() * 2.5 + 1;
         const dur = Math.random() * 14 + 10;
         const delay = Math.random() * 3;
-        const isGreen = Math.random() > 0.55;
         p.style.cssText = `
           left:${Math.random()*100}vw;
           bottom:-10px;
           width:${size}px;
           height:${size}px;
-          background:${isGreen ? 'rgba(99,140,255,0.45)' : 'rgba(99,140,255,0.55)'};
+          background:rgba(99,140,255,0.5);
           animation-duration:${dur}s;
           animation-delay:${delay}s;
         `;
         document.body.appendChild(p);
-        setTimeout(() => p.remove(), (dur + delay) * 1000 + 100);
+        setTimeout(() => { p.remove(); particleCount--; }, (dur + delay) * 1000 + 100);
       }
-      setInterval(spawnParticle, 900);
+      setInterval(spawnParticle, 1600);
     }
 
     // ========== WOW LAYER: Scroll-to-Top Button ==========
